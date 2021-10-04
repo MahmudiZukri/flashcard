@@ -23,8 +23,11 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CustomCard(),
-            SizedBox(height: 10),
+            CustomCard(
+              question: "Kapan Flutter 2.0 rilis ?",
+              answer: "3 Maret 2021",
+            ),
+            SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
