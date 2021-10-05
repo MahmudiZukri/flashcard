@@ -13,7 +13,7 @@ class CustomCard extends StatelessWidget {
       child: FlipCard(
         direction: FlipDirection.HORIZONTAL,
         front: CustomContainer(
-          color: greyColor,
+          color: primaryColor,
           child: Center(
             child: Text(
               question,

@@ -1,3 +1,3 @@
 part of 'shared.dart';
 
-const double edge = 24.0;
+const double edge = 20.0;

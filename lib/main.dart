@@ -11,9 +11,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flashcard',
-      home: HomePage(
-        title: 'Flashcard',
-      ),
+      theme: ThemeData.dark(),
+      home: WelcomePage(),
     );
   }
 }
