@@ -16,7 +16,7 @@ class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
     return FlipCard(
-      speed: 1000,
+      speed: 400,
       controller: widget.controller,
       direction: FlipDirection.HORIZONTAL,
       front: CustomContainer(

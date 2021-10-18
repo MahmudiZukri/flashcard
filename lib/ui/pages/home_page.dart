@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
                         child: Center(
                             child: Text(
                           'You have done today :D',
+                          textAlign: TextAlign.center,
                           style: whiteTextFont.copyWith(fontSize: 14),
                         )),
                         color: Colors.black54),
@@ -153,10 +154,13 @@ class _HomePageState extends State<HomePage> {
         child: OutlinedButton(
             onPressed: () {
               if (selectedCard <= cards.length) {
-                selectedCard += 1;
                 if (cardController.state!.isFront == false) {
                   cardController.toggleCard();
                 }
+                Timer(Duration(milliseconds: 380), () {
+                  selectedCard += 1;
+                  setState(() {});
+                });
               }
               setState(() {});
             },
