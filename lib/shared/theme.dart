@@ -14,6 +14,14 @@ const primaryGradient = LinearGradient(
     colors: [Color(0xFF46A0AE), Color(0xFF00FFCB)],
     begin: Alignment.centerLeft,
     end: Alignment.centerRight);
+var redGradient = LinearGradient(
+    colors: [primaryColor, Colors.red[500]!],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter);
+var greenGradient = LinearGradient(
+    colors: [primaryColor, Colors.green[500]!],
+    begin: Alignment.topCenter,
+    end: Alignment.bottomCenter);
 
 TextStyle blackTextFont = GoogleFonts.poppins(
     color: blackColor, fontSize: 16, fontWeight: FontWeight.w500);
@@ -21,3 +29,5 @@ TextStyle greyTextFont = GoogleFonts.poppins(
     color: primaryColor, fontSize: 16, fontWeight: FontWeight.w500);
 TextStyle whiteTextFont = GoogleFonts.poppins(
     color: whiteColor, fontSize: 16, fontWeight: FontWeight.w500);
+TextStyle lightWhiteTextFont = GoogleFonts.poppins(
+    color: Colors.white70, fontSize: 9, fontWeight: FontWeight.w300);

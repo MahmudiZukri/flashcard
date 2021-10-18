@@ -10,10 +10,11 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 270.0,
+      height: MediaQuery.of(context).size.height / 2,
       width: double.infinity,
-      decoration:
-          BoxDecoration(color: color, borderRadius: BorderRadius.circular(10)),
+      padding: EdgeInsets.all(18.0),
+      decoration: BoxDecoration(
+          color: color, borderRadius: BorderRadius.circular(10.0)),
       child: child,
     );
   }
