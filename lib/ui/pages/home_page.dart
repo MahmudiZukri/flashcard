@@ -24,6 +24,8 @@ class _HomePageState extends State<HomePage> {
 
   FlipCardController cardController = FlipCardController();
   int selectedCard = 0;
+  int index = 0;
+  final sm = Sm();
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +73,12 @@ class _HomePageState extends State<HomePage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    customButton('0', redGradient),
-                    customButton('1', redGradient),
-                    customButton('2', redGradient),
-                    customButton('3', greenGradient),
-                    customButton('4', greenGradient),
-                    customButton('5', greenGradient)
+                    customButton('0', 0, redGradient, cards[index]),
+                    customButton('1', 1, redGradient, cards[index]),
+                    customButton('2', 2, redGradient, cards[index]),
+                    customButton('3', 3, greenGradient, cards[index]),
+                    customButton('4', 4, greenGradient, cards[index]),
+                    customButton('5', 5, greenGradient, cards[index])
                   ],
                 ),
                 SizedBox(height: MediaQuery.of(context).size.height / 36),
@@ -145,7 +147,8 @@ class _HomePageState extends State<HomePage> {
     ));
   }
 
-  Widget customButton(String text, Gradient colorGradient) {
+  Widget customButton(
+      String text, int quality, Gradient colorGradient, CardModel card) {
     return Container(
         height: 30,
         width: ((MediaQuery.of(context).size.width - edge * 2 - 30) / 6),
@@ -157,15 +160,38 @@ class _HomePageState extends State<HomePage> {
                 if (cardController.state!.isFront == false) {
                   cardController.toggleCard();
                 }
-                Timer(Duration(milliseconds: 380), () {
+                Timer(Duration(milliseconds: 250), () {
                   selectedCard += 1;
+                  if (selectedCard < cards.length) {
+                    index = selectedCard;
+                  }
                   setState(() {});
                 });
               }
+
+              // SmResponse smResponse = sm.calc(
+              //     quality: quality,
+              //     repetitions: card.repetitions,
+              //     previousInterval: card.intervals,
+              //     previousEaseFactor: card.easefactor);
+
+              // card = updateCard(card, smResponse);
+
               setState(() {});
             },
             child: Center(
               child: Text(text, style: whiteTextFont.copyWith(fontSize: 12.0)),
             )));
   }
+}
+
+CardModel updateCard(CardModel card, SmResponse response) {
+  CardModel updatedCard = CardModel(
+      id: card.id,
+      question: card.question,
+      answer: card.answer,
+      repetitions: response.repetitions,
+      easefactor: response.easeFactor,
+      intervals: response.interval.toDouble());
+  return updatedCard;
 }

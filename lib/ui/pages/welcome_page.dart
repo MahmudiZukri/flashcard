@@ -33,7 +33,18 @@ class WelcomePage extends StatelessWidget {
                 ),
                 Spacer(),
                 GestureDetector(
-                  onTap: () {
+                  onTap: () async {
+                    // SignInSignUpResult result = await AuthServices.signUp(
+                    //     'test@gmail.com', 'test123', 'namee');
+
+                    // if (result.user == null) {
+                    //   // ignore: avoid_print
+                    //   print(result.message);
+                    // } else {
+                    //   // ignore: avoid_print
+                    //   print('INI TANDANYA ${result.user}');
+                    // }
+
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => HomePage()));
                   },

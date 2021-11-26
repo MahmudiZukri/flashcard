@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "210939356672",
+    "project_id": "flashcard-ccafc",
+    "storage_bucket": "flashcard-ccafc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:210939356672:android:9b2185e509ee0d58fe5ae5",
+        "android_client_info": {
+          "package_name": "com.mahmudizukri.flashcard"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "210939356672-7favcp7ivd5mv8jlllc42mg9nbv04gcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1JOxHgGsR3SyJksx3py9HidAel-U03DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "210939356672-7favcp7ivd5mv8jlllc42mg9nbv04gcj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
