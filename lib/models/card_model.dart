@@ -1,17 +1,21 @@
 part of 'models.dart';
 
-class CardModel {
-  final int id;
+class CardModel extends Equatable {
+  // final int id;
   final String question, answer;
-  double intervals, easefactor;
-  int repetitions;
+  final double intervals, easefactor;
+  final int repetitions;
 
-  CardModel({
-    required this.id,
+  const CardModel({
+    // required this.id,
     required this.question,
     required this.answer,
     this.repetitions = 0,
     this.intervals = 0,
     this.easefactor = 0,
   });
+
+  @override
+  List<Object?> get props =>
+      [question, answer, repetitions, intervals, easefactor];
 }

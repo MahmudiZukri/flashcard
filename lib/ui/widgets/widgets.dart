@@ -6,3 +6,5 @@ import 'package:flutter/material.dart';
 
 part 'custom_card.dart';
 part 'custom_container.dart';
+part 'custom_text.dart';
+part 'custom_appbar.dart';
