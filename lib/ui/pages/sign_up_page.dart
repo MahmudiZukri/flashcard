@@ -268,10 +268,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(snackBar);
                                     }
-                                    _nameController.text = '';
-                                    _emailController.text = '';
-                                    _passwordController.text = '';
-                                    _confirmPasswordController.text = '';
+                                    // _nameController.text = '';
+                                    // _emailController.text = '';
+                                    // _passwordController.text = '';
+                                    // _confirmPasswordController.text = '';
                                   }
 
                                   //kita bikin showDialog nanti untuk konfirmasi YES / NO

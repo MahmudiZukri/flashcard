@@ -8,26 +8,10 @@ class StudyPage extends StatefulWidget {
 }
 
 class _StudyPageState extends State<StudyPage> {
-  // List<CardModel> cards = [
-  //   CardModel(
-  //       // id: 0,
-  //       question: 'Kapan Flutter 2.0 rilis ?',
-  //       answer: '3 Maret 2021'),
-  //   CardModel(
-  //       // id: 1,
-  //       question: 'What is an Algorithm?',
-  //       answer:
-  //           'An algorithm is a set of instructions for solving a problem or accomplishing a task.'),
-  //   CardModel(
-  //       // id: 2,
-  //       question: 'What does SDK stand for?',
-  //       answer: 'Software Development Kit')
-  // ];
-
   FlipCardController cardController = FlipCardController();
   int selectedCard = 0;
   int index = 0;
-  bool flashcardHasData = false;
+  bool flashcardExist = false;
   final sm = Sm();
 
   @override
@@ -110,141 +94,229 @@ class _StudyPageState extends State<StudyPage> {
                 child: Center(
                     child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: edge),
-                  child: StreamBuilder<List<CardModel>>(
-                      stream: FlashcardServices.getStreamFlashcard(user!.id),
-                      builder: (_, snapshot) {
-                        if (snapshot.data == null) {
-                          return Center(
-                              heightFactor: 5.0,
-                              child: Container(
-                                  padding: EdgeInsets.only(bottom: 100.0),
-                                  child: (snapshot.connectionState ==
-                                          ConnectionState.waiting)
-                                      ? CircularProgressIndicator()
-                                      : SizedBox(child: Text('kosong'))));
-                        } else {
-                          List<CardModel> cards = snapshot.data!;
+                  child: user == null
+                      ? SizedBox()
+                      : StreamBuilder<List<CardModel>>(
+                          stream: FlashcardServices.getStreamFlashcard(user.id),
+                          builder: (_, snapshot) {
+                            List<CardModel>? cards;
+                            (snapshot.data == null || snapshot.data!.isEmpty)
+                                ? flashcardExist = false
+                                : flashcardExist = true;
 
-                          return Column(
-                            children: [
-                              Container(
-                                  height: 2.0,
-                                  width: double.infinity,
-                                  color: primaryColor),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 24),
-                              (selectedCard < cards.length)
-                                  ? CustomCard(
-                                      cardModel: cards[selectedCard],
-                                      controller: cardController)
-                                  : CustomContainer(
-                                      child: Center(
-                                          child: Text(
-                                        'You have done today, Great Job! :D',
-                                        textAlign: TextAlign.center,
-                                        style: whiteTextFont.copyWith(
-                                            fontSize: 14),
-                                      )),
-                                      color: Colors.black54),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 20),
-                              BlocBuilder<UserBloc, UserState>(
-                                builder: (_, userState) {
-                                  FlashcardUser user =
-                                      (userState as UserLoaded).user;
+                            cards = snapshot.data;
 
-                                  return Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      customButton('0', 0, redGradient,
-                                          cards[index], cards.length, user.id),
-                                      customButton('1', 1, redGradient,
-                                          cards[index], cards.length, user.id),
-                                      customButton('2', 2, redGradient,
-                                          cards[index], cards.length, user.id),
-                                      customButton('3', 3, greenGradient,
-                                          cards[index], cards.length, user.id),
-                                      customButton('4', 4, greenGradient,
-                                          cards[index], cards.length, user.id),
-                                      customButton('5', 5, greenGradient,
-                                          cards[index], cards.length, user.id)
-                                    ],
-                                  );
-                                },
-                              ),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 36),
-                              Expanded(
-                                child: Container(
+                            return Column(
+                              children: [
+                                Container(
+                                    height: 2.0,
                                     width: double.infinity,
-                                    height: double.infinity,
-                                    color: Colors.transparent,
-                                    child: Table(
-                                      columnWidths: const {
-                                        0: FractionColumnWidth(0.040),
-                                        1: FractionColumnWidth(0.030)
-                                      },
-                                      children: [
-                                        TableRow(children: [
-                                          Text('0', style: lightWhiteTextFont),
-                                          Text(':', style: lightWhiteTextFont),
-                                          Text('Complete blackout',
-                                              style: lightWhiteTextFont,
-                                              maxLines: 2)
-                                        ]),
-                                        TableRow(children: [
-                                          Text('1', style: lightWhiteTextFont),
-                                          Text(':', style: lightWhiteTextFont),
-                                          Text(
-                                              'Incorrect response, the correct one remembered',
-                                              style: lightWhiteTextFont,
-                                              maxLines: 2)
-                                        ]),
-                                        TableRow(children: [
-                                          Text('2', style: lightWhiteTextFont),
-                                          Text(':', style: lightWhiteTextFont),
-                                          Text(
-                                              'Incorrect response, where the correct one seemed easy to recall',
-                                              style: lightWhiteTextFont,
-                                              maxLines: 2)
-                                        ]),
-                                        TableRow(children: [
-                                          Text('3', style: lightWhiteTextFont),
-                                          Text(':', style: lightWhiteTextFont),
-                                          Text(
-                                              'Correct response, recalled with serious difficulty',
-                                              style: lightWhiteTextFont,
-                                              maxLines: 2)
-                                        ]),
-                                        TableRow(children: [
-                                          Text('4', style: lightWhiteTextFont),
-                                          Text(':', style: lightWhiteTextFont),
-                                          Text(
-                                              'Correct response, after a hesitation',
-                                              style: lightWhiteTextFont,
-                                              maxLines: 2)
-                                        ]),
-                                        TableRow(children: [
-                                          Text('5', style: lightWhiteTextFont),
-                                          Text(':', style: lightWhiteTextFont),
-                                          Text('Perfect response',
-                                              style: lightWhiteTextFont,
-                                              maxLines: 2)
-                                        ]),
-                                      ],
-                                    )),
-                              ),
-                              SizedBox(
-                                  height:
-                                      MediaQuery.of(context).size.height / 50),
-                            ],
-                          );
-                        }
-                      }),
+                                    color: primaryColor),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        24),
+                                flashcardExist
+                                    ? (selectedCard < cards!.length)
+                                        ? CustomCard(
+                                            cardModel: cards[selectedCard],
+                                            controller: cardController)
+                                        : CustomContainer(
+                                            child: Center(
+                                                child: Text(
+                                              'You have done today, Great Job! :D',
+                                              textAlign: TextAlign.center,
+                                              style: whiteTextFont.copyWith(
+                                                  fontSize: 14),
+                                            )),
+                                            color: Colors.black54)
+                                    : (snapshot.connectionState ==
+                                            ConnectionState.waiting)
+                                        ? CustomContainer(
+                                            child: Center(
+                                                child: Text(
+                                              "Loading Flashcard...",
+                                              textAlign: TextAlign.center,
+                                              style: whiteTextFont.copyWith(
+                                                  fontSize: 14),
+                                            )),
+                                            color: Colors.black54)
+                                        : CustomContainer(
+                                            child: Center(
+                                                child: Text(
+                                              "You don't have a Flashcard :(",
+                                              textAlign: TextAlign.center,
+                                              style: whiteTextFont.copyWith(
+                                                  fontSize: 14),
+                                            )),
+                                            color: Colors.black54),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        20),
+                                BlocBuilder<UserBloc, UserState>(
+                                  builder: (_, userState) {
+                                    userState is! UserInitial
+                                        ? (userState as UserLoaded).user
+                                        : null;
+
+                                    return (flashcardExist == true &&
+                                            selectedCard < cards!.length &&
+                                            snapshot.connectionState !=
+                                                ConnectionState.waiting)
+                                        ? Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              customButton(
+                                                  '0',
+                                                  0,
+                                                  redGradient,
+                                                  cards[index],
+                                                  cards.length,
+                                                  user.id,
+                                                  false),
+                                              customButton(
+                                                  '1',
+                                                  1,
+                                                  redGradient,
+                                                  cards[index],
+                                                  cards.length,
+                                                  user.id,
+                                                  false),
+                                              customButton(
+                                                  '2',
+                                                  2,
+                                                  redGradient,
+                                                  cards[index],
+                                                  cards.length,
+                                                  user.id,
+                                                  false),
+                                              customButton(
+                                                  '3',
+                                                  3,
+                                                  greenGradient,
+                                                  cards[index],
+                                                  cards.length,
+                                                  user.id,
+                                                  false),
+                                              customButton(
+                                                  '4',
+                                                  4,
+                                                  greenGradient,
+                                                  cards[index],
+                                                  cards.length,
+                                                  user.id,
+                                                  false),
+                                              customButton(
+                                                  '5',
+                                                  5,
+                                                  greenGradient,
+                                                  cards[index],
+                                                  cards.length,
+                                                  user.id,
+                                                  false)
+                                            ],
+                                          )
+                                        : Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              customButton("0", 0, null, null,
+                                                  0, null, true),
+                                              customButton("1", 0, null, null,
+                                                  0, null, true),
+                                              customButton("2", 0, null, null,
+                                                  0, null, true),
+                                              customButton("3", 0, null, null,
+                                                  0, null, true),
+                                              customButton("4", 0, null, null,
+                                                  0, null, true),
+                                              customButton("5", 0, null, null,
+                                                  0, null, true)
+                                            ],
+                                          );
+                                  },
+                                ),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        36),
+                                Expanded(
+                                  child: Container(
+                                      width: double.infinity,
+                                      height: double.infinity,
+                                      color: Colors.transparent,
+                                      child: Table(
+                                        columnWidths: const {
+                                          0: FractionColumnWidth(0.040),
+                                          1: FractionColumnWidth(0.030)
+                                        },
+                                        children: [
+                                          TableRow(children: [
+                                            Text('0',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text('Complete blackout',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('1',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Incorrect response, the correct one remembered',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('2',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Incorrect response, where the correct one seemed easy to recall',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('3',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Correct response, recalled with serious difficulty',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('4',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Correct response, after a hesitation',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('5',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text('Perfect response',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                        ],
+                                      )),
+                                ),
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        50),
+                              ],
+                            );
+                          }),
                 )),
               ),
             ],
@@ -252,54 +324,37 @@ class _StudyPageState extends State<StudyPage> {
     });
   }
 
-  Widget customButton(String text, int quality, Gradient colorGradient,
-      CardModel card, int cardsLength, String userID) {
+  Widget customButton(String text, int quality, Gradient? colorGradient,
+      CardModel? card, int cardsLength, String? userID, bool notAvailable) {
     return Container(
         height: 30,
         width: ((MediaQuery.of(context).size.width - edge * 2 - 30) / 6),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0), gradient: colorGradient),
         child: OutlinedButton(
-            onPressed: () {
-              if (selectedCard <= cardsLength) {
-                if (cardController.state!.isFront == false) {
-                  cardController.toggleCard();
-                }
-                Timer(Duration(milliseconds: 250), () {
-                  selectedCard += 1;
-                  if (selectedCard < cardsLength) {
-                    index = selectedCard;
-                  }
-                  setState(() {});
-                });
-              }
+            onPressed: notAvailable
+                ? null
+                : () {
+                    if (selectedCard <= cardsLength) {
+                      if (cardController.state!.isFront == false) {
+                        cardController.toggleCard();
+                      }
+                      Timer(Duration(milliseconds: 250), () {
+                        selectedCard += 1;
+                        if (selectedCard < cardsLength) {
+                          index = selectedCard;
+                        }
+                        setState(() {});
+                      });
+                    }
 
-              // SmResponse smResponse = sm.calc(
-              //     quality: quality,
-              //     repetitions: card.repetitions,
-              //     previousInterval: card.intervals,
-              //     previouseaseFactor: card.easeFactor);
+                    BlocProvider.of<CardBloc>(context)
+                        .add(ReviewCard(userID!, card!, quality));
 
-              // card = updateCard(card, smResponse);
-
-              BlocProvider.of<CardBloc>(context)
-                  .add(ReviewCard(userID, card, quality));
-
-              setState(() {});
-            },
+                    setState(() {});
+                  },
             child: Center(
               child: Text(text, style: whiteTextFont.copyWith(fontSize: 12.0)),
             )));
   }
 }
-
-// CardModel updateCard(CardModel card, SmResponse response) {
-//   CardModel updatedCard = CardModel(
-//       // id: card.id,
-//       question: card.question,
-//       answer: card.answer,
-//       repetitions: response.repetitions,
-//       easeFactor: response.easeFactor,
-//       intervals: response.interval.toDouble());
-//   return updatedCard;
-// }

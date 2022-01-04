@@ -10,6 +10,7 @@ class AddFlashcardPage extends StatefulWidget {
 class _AddFlashcardPageState extends State<AddFlashcardPage> {
   final TextEditingController _questionController = TextEditingController();
   final TextEditingController _answerController = TextEditingController();
+  bool addingFlashcard = false;
 
   @override
   Widget build(BuildContext context) {
@@ -122,7 +123,9 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                   ),
                   SizedBox(height: 30.0),
                   BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
-                    FlashcardUser user = (userState as UserLoaded).user;
+                    FlashcardUser? user = userState is! UserInitial
+                        ? (userState as UserLoaded).user
+                        : null;
 
                     return Container(
                       height: 45,
@@ -134,13 +137,38 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                         style: ElevatedButton.styleFrom(
                           primary: primaryColor,
                         ),
-                        onPressed: () {
-                          BlocProvider.of<CardBloc>(context).add(AddCard(
-                              user.id,
-                              CardModel(
-                                  question: _questionController.text.trim(),
-                                  answer: _answerController.text.trim())));
-                        },
+                        onPressed: !addingFlashcard
+                            ? () {
+                                addingFlashcard = true;
+                                BlocProvider.of<CardBloc>(context).add(AddCard(
+                                    user?.id ?? '',
+                                    CardModel(
+                                        question:
+                                            _questionController.text.trim(),
+                                        answer:
+                                            _answerController.text.trim())));
+                                _questionController.text = '';
+                                _answerController.text = '';
+                                final snackBar = SnackBar(
+                                    backgroundColor: Colors.green[400],
+                                    duration: Duration(milliseconds: 1500),
+                                    content: Row(
+                                      children: [
+                                        Icon(Icons.check_box,
+                                            color: whiteColor),
+                                        SizedBox(width: 8),
+                                        Text('Flashcard added successfully!',
+                                            style: whiteTextFont.copyWith(
+                                                fontSize: 14,
+                                                fontWeight: FontWeight.bold))
+                                      ],
+                                    ));
+
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(snackBar);
+                                addingFlashcard = false;
+                              }
+                            : null,
                         child: Text(
                           "Add Card",
                           style: whiteTextFont.copyWith(fontSize: 16),
