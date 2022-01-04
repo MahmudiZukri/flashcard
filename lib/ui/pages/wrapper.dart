@@ -17,6 +17,7 @@ class Wrapper extends StatelessWidget {
     } else {
       if (prevPageEvent is! GotoHomePage) {
         BlocProvider.of<UserBloc>(context).add(LoadUser(user!.uid));
+        BlocProvider.of<CardBloc>(context).add(GetCard(user!.uid));
 
         prevPageEvent = GotoHomePage();
         // context.read()<PageBloc>().add(prevPageEvent);

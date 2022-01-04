@@ -22,3 +22,14 @@ class AddCard extends CardEvent {
   @override
   List<Object?> get props => [userID, card];
 }
+
+class ReviewCard extends CardEvent {
+  final String userID;
+  final CardModel card;
+  final int quality;
+
+  const ReviewCard(this.userID, this.card, this.quality);
+
+  @override
+  List<Object?> get props => [userID, card, quality];
+}
