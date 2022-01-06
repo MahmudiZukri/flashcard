@@ -12,7 +12,8 @@ class FlashcardServices {
       'answer': flashcard.answer,
       'repetitions': flashcard.repetitions,
       'intervals': flashcard.intervals,
-      'easeFactor': flashcard.easeFactor
+      'easeFactor': flashcard.easeFactor,
+      'reviewedDate': flashcard.reviewedDate.millisecondsSinceEpoch
     });
   }
 
@@ -30,9 +31,11 @@ class FlashcardServices {
           // id: document.data()['userID'],
           question: document.data()['question'],
           answer: document.data()['answer'],
-          repetitions: document.data()['repetitions'],
-          intervals: document.data()['intervals'],
-          easeFactor: document.data()['easeFactor']));
+          repetitions: (document.data()['repetitions'] as num).toInt(),
+          intervals: (document.data()['intervals'] as num).toDouble(),
+          easeFactor: (document.data()['easeFactor'] as num).toDouble(),
+          reviewedDate: DateTime.fromMillisecondsSinceEpoch(
+              document.data()['reviewedDate'])));
     }
     return flashcards;
   }
@@ -51,9 +54,11 @@ class FlashcardServices {
           // id: document.data()['userID'],
           question: document.data()['question'],
           answer: document.data()['answer'],
-          repetitions: document.data()['repetitions'],
-          intervals: document.data()['intervals'],
-          easeFactor: document.data()['easeFactor']));
+          repetitions: (document.data()['repetitions'] as num).toInt(),
+          intervals: (document.data()['intervals'] as num).toDouble(),
+          easeFactor: (document.data()['easeFactor'] as num).toDouble(),
+          reviewedDate: DateTime.fromMillisecondsSinceEpoch(
+              document.data()['reviewedDate'])));
     }
     yield flashcards;
   }

@@ -37,7 +37,8 @@ class CardBloc extends Bloc<CardEvent, CardState> {
       CardModel reviewedCard = event.card.copyWith(
           repetitions: smResponse.repetitions,
           intervals: smResponse.interval.toDouble(),
-          easeFactor: smResponse.easeFactor);
+          easeFactor: smResponse.easeFactor,
+          reviewedDate: DateTime.now());
 
       await FlashcardServices.saveFlashcard(event.userID, reviewedCard);
 

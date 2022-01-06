@@ -24,18 +24,21 @@ class _CustomCardState extends State<CustomCard> {
         child: Center(
           child: Text(
             widget.cardModel.question,
-            style: whiteTextFont.copyWith(fontSize: 14),
+            style: whiteTextFont.copyWith(fontSize: 16),
             textAlign: TextAlign.center,
           ),
         ),
       ),
       back: CustomContainer(
-        color: Colors.green,
+        color: Colors.green[700]!,
         child: Center(
-          child: Text(
-            widget.cardModel.answer,
-            style: whiteTextFont.copyWith(fontSize: 14),
-            textAlign: TextAlign.center,
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Text(
+              widget.cardModel.answer,
+              style: whiteTextFont.copyWith(fontSize: 20),
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ),

@@ -8,9 +8,15 @@ class AddFlashcardPage extends StatefulWidget {
 }
 
 class _AddFlashcardPageState extends State<AddFlashcardPage> {
+  Verse? verse;
   final TextEditingController _questionController = TextEditingController();
   final TextEditingController _answerController = TextEditingController();
+  final TextEditingController _chapterNumberController =
+      TextEditingController();
+  final TextEditingController _verseNumberController = TextEditingController();
+
   bool addingFlashcard = false;
+  bool verseExist = false;
 
   @override
   Widget build(BuildContext context) {
@@ -94,15 +100,96 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
               height: double.infinity,
               width: double.infinity,
               padding: const EdgeInsets.symmetric(horizontal: edge),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+              child: ListView(
+                physics: BouncingScrollPhysics(),
                 children: [
                   Container(
                       height: 2.0, width: double.infinity, color: primaryColor),
                   SizedBox(height: 30.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      SizedBox(
+                        width:
+                            ((MediaQuery.of(context).size.width / 2) - edge) -
+                                10,
+                        child: TextField(
+                          controller: _chapterNumberController,
+                          style: whiteTextFont,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: accentColor,
+                              labelText: "Chapter Number",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0))),
+                        ),
+                      ),
+                      SizedBox(width: 20.0),
+                      SizedBox(
+                        width:
+                            ((MediaQuery.of(context).size.width / 2) - edge) -
+                                10,
+                        child: TextField(
+                          controller: _verseNumberController,
+                          style: whiteTextFont,
+                          keyboardType: TextInputType.number,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: accentColor,
+                              labelText: "Verse Number",
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(12.0))),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 28.0),
+                  Container(
+                    height: 45,
+                    width: 250,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadiusDirectional.circular(0),
+                    ),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        primary: primaryColor,
+                      ),
+                      onPressed: () async {
+                        verse = await VerseServices.getVerse(
+                            int.parse(_chapterNumberController.text.trim()),
+                            int.parse(_verseNumberController.text.trim()));
+
+                        if (verse?.chapterNumber != 0 ||
+                            verse?.verseNumber != 0 ||
+                            verse == null) {
+                          verseExist = true;
+                        } else {
+                          verseExist = false;
+                        }
+                        if (verseExist) {
+                          _questionController.text =
+                              'What is the content of Surah ${verse!.chapterName} [ ${verse!.chapterNumber} : ${verse!.verseNumber} ]  ?';
+                          _answerController.text = verse!.verseText;
+                        } else {
+                          _questionController.text = 'Not found';
+                          _answerController.text = 'Not found';
+                        }
+
+                        setState(() {});
+                      },
+                      child: Text(
+                        "Show Card",
+                        style: whiteTextFont.copyWith(fontSize: 16),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 28.0),
                   TextField(
                     controller: _questionController,
                     style: whiteTextFont,
+                    maxLines: null,
+                    readOnly: true,
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: accentColor,
@@ -113,7 +200,13 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                   SizedBox(height: 20),
                   TextField(
                     controller: _answerController,
-                    style: whiteTextFont,
+                    style: verseExist
+                        ? whiteTextFont.copyWith(fontSize: 20)
+                        : whiteTextFont,
+                    maxLines: null,
+                    readOnly: true,
+                    textDirection:
+                        verseExist ? TextDirection.rtl : TextDirection.ltr,
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: accentColor,
@@ -121,7 +214,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0))),
                   ),
-                  SizedBox(height: 30.0),
+                  SizedBox(height: 28),
                   BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
                     FlashcardUser? user = userState is! UserInitial
                         ? (userState as UserLoaded).user
@@ -137,7 +230,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                         style: ElevatedButton.styleFrom(
                           primary: primaryColor,
                         ),
-                        onPressed: !addingFlashcard
+                        onPressed: !addingFlashcard && verseExist
                             ? () {
                                 addingFlashcard = true;
                                 BlocProvider.of<CardBloc>(context).add(AddCard(
@@ -145,8 +238,8 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                     CardModel(
                                         question:
                                             _questionController.text.trim(),
-                                        answer:
-                                            _answerController.text.trim())));
+                                        answer: _answerController.text.trim(),
+                                        reviewedDate: DateTime.now())));
                                 _questionController.text = '';
                                 _answerController.text = '';
                                 final snackBar = SnackBar(
@@ -175,7 +268,8 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                         ),
                       ),
                     );
-                  })
+                  }),
+                  SizedBox(height: 30.0)
                 ],
               ),
             ),
