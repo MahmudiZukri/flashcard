@@ -29,15 +29,17 @@ class _CustomCardState extends State<CustomCard> {
           ),
         ),
       ),
-      back: CustomContainer(
-        color: Colors.green[700]!,
-        child: Center(
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
-            child: Text(
-              widget.cardModel.answer,
-              style: whiteTextFont.copyWith(fontSize: 20),
-              textAlign: TextAlign.center,
+      back: RawScrollbar(
+        child: CustomContainer(
+          color: Colors.green[700]!,
+          child: Center(
+            child: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              child: Text(
+                widget.cardModel.answer,
+                style: whiteTextFont.copyWith(fontSize: 20),
+                textAlign: TextAlign.center,
+              ),
             ),
           ),
         ),

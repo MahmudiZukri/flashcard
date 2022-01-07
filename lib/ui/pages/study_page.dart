@@ -31,7 +31,7 @@ class _StudyPageState extends State<StudyPage> {
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
-                  padding: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
+                  margin: const EdgeInsets.fromLTRB(30.0, 30.0, 30.0, 10.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,8 +91,7 @@ class _StudyPageState extends State<StudyPage> {
                   width: MediaQuery.of(context).size.width,
                   child: WebsafeSvg.asset("assets/bg.svg", fit: BoxFit.fill)),
               SafeArea(
-                child: Center(
-                    child: Padding(
+                child: Padding(
                   padding: EdgeInsets.symmetric(horizontal: edge),
                   child: user == null
                       ? SizedBox()
@@ -135,6 +134,7 @@ class _StudyPageState extends State<StudyPage> {
                             return SizedBox(
                               height: MediaQuery.of(context).size.height,
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Container(
                                       height: 2.0,
@@ -144,40 +144,42 @@ class _StudyPageState extends State<StudyPage> {
                                       height:
                                           MediaQuery.of(context).size.height /
                                               24),
-                                  flashcardExist
-                                      ? (selectedCard < cards!.length)
-                                          ? CustomCard(
-                                              cardModel: cards[selectedCard],
-                                              controller: cardController)
-                                          : CustomContainer(
-                                              child: Center(
-                                                  child: Text(
-                                                'You have done today, Great Job! :D',
-                                                textAlign: TextAlign.center,
-                                                style: whiteTextFont.copyWith(
-                                                    fontSize: 14),
-                                              )),
-                                              color: Colors.black54)
-                                      : (snapshot.connectionState ==
-                                              ConnectionState.waiting)
-                                          ? CustomContainer(
-                                              child: Center(
-                                                  child: Text(
-                                                "Loading Flashcard...",
-                                                textAlign: TextAlign.center,
-                                                style: whiteTextFont.copyWith(
-                                                    fontSize: 14),
-                                              )),
-                                              color: Colors.black54)
-                                          : CustomContainer(
-                                              child: Center(
-                                                  child: Text(
-                                                "You don't have a Flashcard :(",
-                                                textAlign: TextAlign.center,
-                                                style: whiteTextFont.copyWith(
-                                                    fontSize: 14),
-                                              )),
-                                              color: Colors.black54),
+                                  Expanded(
+                                    child: flashcardExist
+                                        ? (selectedCard < cards!.length)
+                                            ? CustomCard(
+                                                cardModel: cards[selectedCard],
+                                                controller: cardController)
+                                            : CustomContainer(
+                                                child: Center(
+                                                    child: Text(
+                                                  'You have done today, Great Job! :D',
+                                                  textAlign: TextAlign.center,
+                                                  style: whiteTextFont.copyWith(
+                                                      fontSize: 14),
+                                                )),
+                                                color: Colors.black54)
+                                        : (snapshot.connectionState ==
+                                                ConnectionState.waiting)
+                                            ? CustomContainer(
+                                                child: Center(
+                                                    child: Text(
+                                                  "Loading Flashcard...",
+                                                  textAlign: TextAlign.center,
+                                                  style: whiteTextFont.copyWith(
+                                                      fontSize: 14),
+                                                )),
+                                                color: Colors.black54)
+                                            : CustomContainer(
+                                                child: Center(
+                                                    child: Text(
+                                                  "You don't have a Flashcard :(",
+                                                  textAlign: TextAlign.center,
+                                                  style: whiteTextFont.copyWith(
+                                                      fontSize: 14),
+                                                )),
+                                                color: Colors.black54),
+                                  ),
                                   SizedBox(
                                       height:
                                           MediaQuery.of(context).size.height /
@@ -272,81 +274,83 @@ class _StudyPageState extends State<StudyPage> {
                                       height:
                                           MediaQuery.of(context).size.height /
                                               36),
-                                  Flexible(
-                                    child: SizedBox(
-                                        width: double.infinity,
-                                        child: Table(
-                                          columnWidths: const {
-                                            0: FractionColumnWidth(0.040),
-                                            1: FractionColumnWidth(0.030)
-                                          },
-                                          children: [
-                                            TableRow(children: [
-                                              Text('0',
-                                                  style: lightWhiteTextFont),
-                                              Text(':',
-                                                  style: lightWhiteTextFont),
-                                              Text('Complete blackout',
-                                                  style: lightWhiteTextFont,
-                                                  maxLines: 2)
-                                            ]),
-                                            TableRow(children: [
-                                              Text('1',
-                                                  style: lightWhiteTextFont),
-                                              Text(':',
-                                                  style: lightWhiteTextFont),
-                                              Text(
-                                                  'Incorrect response, the correct one remembered',
-                                                  style: lightWhiteTextFont,
-                                                  maxLines: 2)
-                                            ]),
-                                            TableRow(children: [
-                                              Text('2',
-                                                  style: lightWhiteTextFont),
-                                              Text(':',
-                                                  style: lightWhiteTextFont),
-                                              Text(
-                                                  'Incorrect response, where the correct one seemed easy to recall',
-                                                  style: lightWhiteTextFont,
-                                                  maxLines: 2)
-                                            ]),
-                                            TableRow(children: [
-                                              Text('3',
-                                                  style: lightWhiteTextFont),
-                                              Text(':',
-                                                  style: lightWhiteTextFont),
-                                              Text(
-                                                  'Correct response, recalled with serious difficulty',
-                                                  style: lightWhiteTextFont,
-                                                  maxLines: 2)
-                                            ]),
-                                            TableRow(children: [
-                                              Text('4',
-                                                  style: lightWhiteTextFont),
-                                              Text(':',
-                                                  style: lightWhiteTextFont),
-                                              Text(
-                                                  'Correct response, after a hesitation',
-                                                  style: lightWhiteTextFont,
-                                                  maxLines: 2)
-                                            ]),
-                                            TableRow(children: [
-                                              Text('5',
-                                                  style: lightWhiteTextFont),
-                                              Text(':',
-                                                  style: lightWhiteTextFont),
-                                              Text('Perfect response',
-                                                  style: lightWhiteTextFont,
-                                                  maxLines: 2)
-                                            ]),
-                                          ],
-                                        )),
-                                  ),
+                                  SizedBox(
+                                      width: double.infinity,
+                                      child: Table(
+                                        columnWidths: const {
+                                          0: FractionColumnWidth(0.040),
+                                          1: FractionColumnWidth(0.030)
+                                        },
+                                        children: [
+                                          TableRow(children: [
+                                            Text('0',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text('Complete blackout',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('1',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Incorrect response, the correct one remembered',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('2',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Incorrect response, where the correct one seemed easy to recall',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('3',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Correct response, recalled with serious difficulty',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('4',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text(
+                                                'Correct response, after a hesitation',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                          TableRow(children: [
+                                            Text('5',
+                                                style: lightWhiteTextFont),
+                                            Text(':',
+                                                style: lightWhiteTextFont),
+                                            Text('Perfect response',
+                                                style: lightWhiteTextFont,
+                                                maxLines: 2)
+                                          ]),
+                                        ],
+                                      )),
+                                  SizedBox(
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              36),
                                 ],
                               ),
                             );
                           }),
-                )),
+                ),
               ),
             ],
           ));
