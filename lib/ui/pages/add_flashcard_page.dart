@@ -23,7 +23,15 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-          child: CustomBar(title: 'ADD CARD'),
+          child: CustomBar(title: 'ADD CARD', actions: [
+            IconButton(
+                icon: Icon(Icons.book_outlined),
+                color: Colors.white,
+                onPressed: () {
+                  BlocProvider.of<PageBloc>(context).add(GotoStudyPage());
+                }),
+            SizedBox(width: 4)
+          ]),
           preferredSize: Size.fromHeight(50.0)),
       drawer: Drawer(
           backgroundColor: accentColor,
@@ -46,8 +54,9 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Nama Pengguna :',
+                          Text('User Name :',
                               style: whiteTextFont.copyWith(fontSize: 16)),
+                          SizedBox(height: 10),
                           Flexible(
                             child: Text(user?.name ?? 'No Name',
                                 maxLines: 2,

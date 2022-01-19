@@ -27,7 +27,7 @@ final greenGradient = LinearGradient(
     end: Alignment.bottomCenter);
 final Shader textGradient = LinearGradient(
   colors: const <Color>[tealColor, tealBrightColor],
-).createShader(Rect.fromLTWH(100.0, 100.0, 5.0, 5.0));
+).createShader(Rect.fromLTWH(50.0, 50.0, 200.0, 200.0));
 
 TextStyle greyTextFont =
     TextStyle(color: primaryColor, fontSize: 16, fontWeight: FontWeight.w500);

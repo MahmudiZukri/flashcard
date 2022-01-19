@@ -6,65 +6,75 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Container(
-            padding: EdgeInsets.symmetric(horizontal: defaultMargin),
+      resizeToAvoidBottomInset: false,
+      body: Stack(
+        children: [
+          SizedBox(
+              height: MediaQuery.of(context).size.height,
+              width: MediaQuery.of(context).size.width,
+              child: WebsafeSvg.asset("assets/bg.svg", fit: BoxFit.fill)),
+          Container(
+            height: double.infinity,
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: edge),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Container(
-                  height: 136,
-                  decoration: BoxDecoration(color: Colors.black
-                      // image: DecorationImage(
-                      //     image: AssetImage("assets/logo.png")),
-                      ),
-                ),
-                Container(
-                    margin: EdgeInsets.only(top: 70, bottom: 16),
-                    child: Text(
-                      "Flashcard",
-                      style: blackTextFont.copyWith(fontSize: 20),
-                    )),
+                SizedBox(height: 120),
+                Text("Al-Qur'an Flashcard",
+                    // textAlign: TextAlign.center,
+                    style: tealTextFont.copyWith(
+                        fontSize: 50,
+                        fontWeight: FontWeight.bold,
+                        foreground: Paint()..shader = textGradient)),
+                SizedBox(height: 80),
                 Text(
-                  "Tergantung judul yang acc",
-                  style: greyTextFont.copyWith(
-                      fontWeight: FontWeight.w300, fontSize: 16),
+                  "Penerapan Spaced Repetition dengan Menggunakan Algoritma SuperMemo 2 dalam Penghafalan Ayat Al-Qur'an",
+                  style: whiteTextFont.copyWith(letterSpacing: 2.0),
                   textAlign: TextAlign.center,
                 ),
-                Container(
-                  height: 45,
-                  width: 250,
-                  margin: EdgeInsets.only(top: 70, bottom: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadiusDirectional.circular(0),
-                  ),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      primary: primaryColor,
-                    ),
-                    onPressed: () {
-                      BlocProvider.of<PageBloc>(context).add(GotoSignInPage());
+                Spacer(),
+                GestureDetector(
+                    onTap: () {
+                      context.read<PageBloc>().add(GotoSignUpPage());
                     },
-                    child: Text(
-                      "Get Started",
-                      style: whiteTextFont.copyWith(fontSize: 16),
-                    ),
-                  ),
-                ),
+                    child: Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(edge * 0.75),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12.0),
+                            gradient: primaryGradient,
+                            color: Colors.grey),
+                        child: Text("Get Started",
+                            style: blackTextFont.copyWith(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black87)))),
+                SizedBox(height: 10),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text("Already have an account? ",
-                      style: greyTextFont.copyWith(
-                          fontWeight: FontWeight.w400, fontSize: 14)),
+                  Text("Already Have an Account? ",
+                      style: whiteTextFont.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: Colors.white60)),
                   GestureDetector(
                       onTap: () {
-                        // context.bloc<PageBloc>().add(GotoSignInPage());
+                        context.read<PageBloc>().add(GotoSignInPage());
                       },
                       child: Text(
                         "Sign In",
-                        style: greyTextFont.copyWith(fontSize: 14),
+                        style: tealTextFont.copyWith(
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                        ),
                       ))
-                ])
+                ]),
+                SizedBox(height: 60)
               ],
-            )));
+            ),
+          )
+        ],
+      ),
+    );
   }
 }

@@ -10,8 +10,8 @@ class Wrapper extends StatelessWidget {
     // User user = Provider.of<User>(context);
     // auth.FirebaseAuth.instance.authStateChanges().listen((auth.User? user) {
     if (user == null) {
-      if (prevPageEvent is! GotoSignInPage) {
-        prevPageEvent = GotoSignInPage();
+      if (prevPageEvent is! GotoSplashPage) {
+        prevPageEvent = GotoSplashPage();
         BlocProvider.of<PageBloc>(context).add(prevPageEvent!);
       }
     } else {

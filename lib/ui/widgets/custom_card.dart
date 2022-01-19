@@ -37,7 +37,7 @@ class _CustomCardState extends State<CustomCard> {
               physics: BouncingScrollPhysics(),
               child: Text(
                 widget.cardModel.answer,
-                style: whiteTextFont.copyWith(fontSize: 20),
+                style: whiteTextFont.copyWith(fontSize: 22),
                 textAlign: TextAlign.center,
               ),
             ),

@@ -23,7 +23,16 @@ class _StudyPageState extends State<StudyPage> {
       return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: PreferredSize(
-              child: CustomBar(title: 'STUDY'),
+              child: CustomBar(title: 'STUDY', actions: [
+                IconButton(
+                    icon: Icon(Icons.add_box_outlined),
+                    color: Colors.white,
+                    onPressed: () {
+                      BlocProvider.of<PageBloc>(context)
+                          .add(GotoAddFlashcardPage());
+                    }),
+                SizedBox(width: 4)
+              ]),
               preferredSize: Size.fromHeight(50.0)),
           drawer: Drawer(
               backgroundColor: accentColor,
@@ -41,8 +50,9 @@ class _StudyPageState extends State<StudyPage> {
                             child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Nama Pengguna :',
+                            Text('User Name :',
                                 style: whiteTextFont.copyWith(fontSize: 16)),
+                            SizedBox(height: 10),
                             Flexible(
                               child: Text(user?.name ?? 'No Name',
                                   maxLines: 2,
@@ -126,8 +136,8 @@ class _StudyPageState extends State<StudyPage> {
                             if (flashcardExist) {
                               DateTime dateRightNow = DateTime.now();
                               cards = (notFilteredCards!.where((card) =>
-                                  (daysBetween(
-                                      dateRightNow, card.reviewedDate)) >=
+                                  daysBetween(
+                                      dateRightNow, card.reviewedDate) >=
                                   card.intervals)).toList();
                             }
 
