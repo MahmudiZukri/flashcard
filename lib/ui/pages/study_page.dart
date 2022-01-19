@@ -12,7 +12,6 @@ class _StudyPageState extends State<StudyPage> {
   int selectedCard = 0;
   int index = 0;
   bool flashcardExist = false;
-  final sm = Sm();
 
   @override
   Widget build(BuildContext context) {
@@ -118,17 +117,9 @@ class _StudyPageState extends State<StudyPage> {
                             notFilteredCards = snapshot.data;
 
                             int daysBetween(DateTime from, DateTime to) {
-                              from = DateTime(from.year, from.month, from.day,
-                                  from.hour, from.minute, from.second);
-                              to = DateTime(to.year, to.month, to.day, to.hour,
-                                  to.minute, to.second);
-                              //kita buat dsini +0.5 biar flashcardnya muncul di jam 00.00
-                              //karna kalo hasil pembagiannya 0.49 ketika diround menjadi 0 bukan 1
-                              //jadi kita tambahkan 0.5 biar jadi 1
-                              //pas kita tes lagi dengan kodingan sebelumnya, aneh kali
-                              //flashcard direview 2 kali, jadi kita hapus lagi 0.5nya
-                              //terus kembali bagus, apa karena kita dah tambah hour
-                              //minute sama second? cari tau lagi bsok
+                              from = DateTime(from.year, from.month, from.day);
+                              to = DateTime(to.year, to.month, to.day);
+
                               return ((to.difference(from).inHours / 24))
                                   .round();
                             }
@@ -137,7 +128,7 @@ class _StudyPageState extends State<StudyPage> {
                               DateTime dateRightNow = DateTime.now();
                               cards = (notFilteredCards!.where((card) =>
                                   daysBetween(
-                                      dateRightNow, card.reviewedDate) >=
+                                      card.reviewedDate, dateRightNow) >=
                                   card.intervals)).toList();
                             }
 

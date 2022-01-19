@@ -13,7 +13,7 @@ class FlashcardServices {
       'repetitions': flashcard.repetitions,
       'intervals': flashcard.intervals,
       'easeFactor': flashcard.easeFactor,
-      'reviewedDate': flashcard.reviewedDate.millisecondsSinceEpoch
+      'reviewedDate': flashcard.reviewedDate.millisecondsSinceEpoch,
     });
   }
 
@@ -32,7 +32,7 @@ class FlashcardServices {
           question: document.data()['question'],
           answer: document.data()['answer'],
           repetitions: (document.data()['repetitions'] as num).toInt(),
-          intervals: (document.data()['intervals'] as num).toDouble(),
+          intervals: (document.data()['intervals'] as num).toInt(),
           easeFactor: (document.data()['easeFactor'] as num).toDouble(),
           reviewedDate: DateTime.fromMillisecondsSinceEpoch(
               document.data()['reviewedDate'])));
@@ -55,7 +55,7 @@ class FlashcardServices {
           question: document.data()['question'],
           answer: document.data()['answer'],
           repetitions: (document.data()['repetitions'] as num).toInt(),
-          intervals: (document.data()['intervals'] as num).toDouble(),
+          intervals: (document.data()['intervals'] as num).toInt(),
           easeFactor: (document.data()['easeFactor'] as num).toDouble(),
           reviewedDate: DateTime.fromMillisecondsSinceEpoch(
               document.data()['reviewedDate'])));

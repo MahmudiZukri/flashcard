@@ -42,7 +42,6 @@ dependencies:
   google_fonts: ^2.1.0
   http: ^0.13.4
   provider: ^6.0.0
-  sm2: ^0.1.6
   websafe_svg: ^2.0.0+1
 
 dev_dependencies:

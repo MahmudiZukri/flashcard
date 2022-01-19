@@ -11,9 +11,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:sm2/sm.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:email_validator/email_validator.dart';

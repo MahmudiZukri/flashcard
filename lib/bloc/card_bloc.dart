@@ -2,8 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flashcard/models/models.dart';
 import 'package:flashcard/services/services.dart';
-// ignore: import_of_legacy_library_into_null_safe
-import 'package:sm2/main.dart';
 
 part 'card_event.dart';
 part 'card_state.dart';
@@ -26,9 +24,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
     });
 
     on<ReviewCard>((event, emit) async {
-      Sm sm = Sm();
-
-      SmResponse smResponse = sm.calc(
+      Sm2Response smResponse = Sm2.calc(
           quality: event.quality,
           repetitions: event.card.repetitions,
           previousInterval: event.card.intervals,
@@ -36,7 +32,7 @@ class CardBloc extends Bloc<CardEvent, CardState> {
 
       CardModel reviewedCard = event.card.copyWith(
           repetitions: smResponse.repetitions,
-          intervals: smResponse.interval.toDouble(),
+          intervals: smResponse.interval,
           easeFactor: smResponse.easeFactor,
           reviewedDate: DateTime.now());
 

@@ -20,20 +20,21 @@ class SplashPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 120),
+                SizedBox(height: 100),
                 Text("Al-Qur'an Flashcard",
-                    // textAlign: TextAlign.center,
+                    textAlign: TextAlign.center,
                     style: tealTextFont.copyWith(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
                         foreground: Paint()..shader = textGradient)),
-                SizedBox(height: 80),
+                Spacer(),
                 Text(
                   "Penerapan Spaced Repetition dengan Menggunakan Algoritma SuperMemo 2 dalam Penghafalan Ayat Al-Qur'an",
-                  style: whiteTextFont.copyWith(letterSpacing: 2.0),
+                  style: whiteTextFont.copyWith(
+                      letterSpacing: 1.8, wordSpacing: 5.2),
                   textAlign: TextAlign.center,
                 ),
-                Spacer(),
+                Spacer(flex: 2),
                 GestureDetector(
                     onTap: () {
                       context.read<PageBloc>().add(GotoSignUpPage());
@@ -56,7 +57,7 @@ class SplashPage extends StatelessWidget {
                       style: whiteTextFont.copyWith(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: Colors.white60)),
+                          color: Colors.white54)),
                   GestureDetector(
                       onTap: () {
                         context.read<PageBloc>().add(GotoSignInPage());

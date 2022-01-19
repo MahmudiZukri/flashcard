@@ -40,17 +40,18 @@ class _SignInPageState extends State<SignInPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 120),
+                SizedBox(height: 100),
                 Text("Sign In",
                     style: tealTextFont.copyWith(
                         fontSize: 50,
                         fontWeight: FontWeight.bold,
                         foreground: Paint()..shader = textGradient)),
+                SizedBox(height: 4),
                 Text(
-                  "Enter your information below",
-                  style: whiteTextFont,
+                  "Login to start memorizing verses of Al-Qur'an",
+                  style: whiteTextFont.copyWith(color: Colors.white70),
                 ),
-                SizedBox(height: 80),
+                Spacer(),
                 TextField(
                   controller: _emailController,
                   onChanged: (text) {
@@ -83,7 +84,7 @@ class _SignInPageState extends State<SignInPage> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0))),
                 ),
-                Spacer(),
+                Spacer(flex: 2),
                 GestureDetector(
                   onTap: () async {
                     setState(() {
@@ -150,7 +151,7 @@ class _SignInPageState extends State<SignInPage> {
                       style: whiteTextFont.copyWith(
                           fontWeight: FontWeight.w400,
                           fontSize: 14,
-                          color: Colors.white60)),
+                          color: Colors.white54)),
                   GestureDetector(
                       onTap: () {
                         _emailController.text = '';

@@ -3,8 +3,8 @@ part of 'models.dart';
 class CardModel extends Equatable {
   // final int id;
   final String question, answer;
-  final int repetitions;
-  final double intervals, easeFactor;
+  final int repetitions, intervals;
+  final double easeFactor;
   final DateTime reviewedDate;
 
   const CardModel(
@@ -19,7 +19,7 @@ class CardModel extends Equatable {
 
   CardModel copyWith(
           {required int repetitions,
-          required double intervals,
+          required int intervals,
           required double easeFactor,
           required DateTime reviewedDate}) =>
       CardModel(
