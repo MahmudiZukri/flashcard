@@ -84,6 +84,86 @@ class _SignInPageState extends State<SignInPage> {
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12.0))),
                 ),
+                SizedBox(height: 10),
+                Row(children: [
+                  Text("Forgot password ? ",
+                      style: whiteTextFont.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          color: Colors.white54)),
+                  GestureDetector(
+                      onTap: () async {
+                        SignInSignUpResult result =
+                            await AuthServices.resetPassword(
+                                _emailController.text.trim());
+                        if (_emailController.text.trim() == '') {
+                          final snackBar = SnackBar(
+                              backgroundColor: Colors.red[400],
+                              duration: Duration(milliseconds: 1500),
+                              content: Row(
+                                children: [
+                                  Icon(Icons.dangerous, color: whiteColor),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text("Please type your email !",
+                                        maxLines: 2,
+                                        style: whiteTextFont.copyWith(
+                                          fontSize: 14,
+                                        )),
+                                  )
+                                ],
+                              ));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        } else if (result.message == null) {
+                          final snackBar = SnackBar(
+                              backgroundColor: Colors.green[400],
+                              duration: Duration(milliseconds: 1500),
+                              content: Row(
+                                children: [
+                                  Icon(Icons.check_box, color: whiteColor),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(
+                                        'The link to change your password has been sent to your email',
+                                        maxLines: 2,
+                                        style: whiteTextFont.copyWith(
+                                          fontSize: 14,
+                                        )),
+                                  )
+                                ],
+                              ));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        } else {
+                          final snackBar = SnackBar(
+                              backgroundColor: Colors.red[400],
+                              duration: Duration(milliseconds: 1500),
+                              content: Row(
+                                children: [
+                                  Icon(Icons.dangerous, color: whiteColor),
+                                  SizedBox(width: 8),
+                                  Expanded(
+                                    child: Text(result.message!,
+                                        maxLines: 2,
+                                        style: whiteTextFont.copyWith(
+                                          fontSize: 14,
+                                        )),
+                                  )
+                                ],
+                              ));
+
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        }
+                      },
+                      child: Text(
+                        "Get now",
+                        style: tealTextFont.copyWith(
+                          decoration: TextDecoration.underline,
+                          fontSize: 14,
+                        ),
+                      ))
+                ]),
                 Spacer(flex: 2),
                 GestureDetector(
                   onTap: () async {
@@ -116,8 +196,8 @@ class _SignInPageState extends State<SignInPage> {
                                         : result.message!,
                                     maxLines: 2,
                                     style: whiteTextFont.copyWith(
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.bold)),
+                                      fontSize: 14,
+                                    )),
                               )
                             ],
                           ));

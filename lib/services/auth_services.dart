@@ -48,6 +48,16 @@ class AuthServices {
     await _auth.signOut();
   }
 
+  static Future<SignInSignUpResult> resetPassword(String email) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+
+      return SignInSignUpResult();
+    } catch (e) {
+      return SignInSignUpResult(message: e.toString().split(']')[1].trim());
+    }
+  }
+
   static Stream<User?> get userStream => _auth.authStateChanges();
   // static Stream<User?> get userStream => _auth.userChanges();
 }

@@ -261,8 +261,8 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                         SizedBox(width: 8),
                                         Text('Flashcard added successfully!',
                                             style: whiteTextFont.copyWith(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.bold))
+                                              fontSize: 14,
+                                            ))
                                       ],
                                     ));
 

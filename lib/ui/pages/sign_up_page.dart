@@ -141,9 +141,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                                 'Please fill all the fields !',
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                                  fontSize: 14,
+                                                )),
                                           )
                                         ],
                                       ));
@@ -165,9 +164,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                                 'Mismatch password and confirmed password !',
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                                  fontSize: 14,
+                                                )),
                                           )
                                         ],
                                       ));
@@ -189,9 +187,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                                 "Password's length min 6 character !",
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                                  fontSize: 14,
+                                                )),
                                           )
                                         ],
                                       ));
@@ -213,9 +210,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                                 'Wrong formatted email address !',
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
-                                                    fontSize: 14,
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                                                  fontSize: 14,
+                                                )),
                                           )
                                         ],
                                       ));
@@ -249,9 +245,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                               child: Text(result.message!,
                                                   maxLines: 2,
                                                   style: whiteTextFont.copyWith(
-                                                      fontSize: 14,
-                                                      fontWeight:
-                                                          FontWeight.bold)),
+                                                    fontSize: 14,
+                                                  )),
                                             )
                                           ],
                                         ));
