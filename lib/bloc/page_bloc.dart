@@ -6,7 +6,7 @@ part 'page_state.dart';
 
 class PageBloc extends Bloc<PageEvent, PageState> {
   PageBloc() : super(PageInitial()) {
-    on<GotoSplashPage>((event, emit) => emit(OnSplashPage()));
+    on<GotoLandingPage>((event, emit) => emit(OnLandingPage()));
     on<GotoSignUpPage>((event, emit) => emit(OnSignUpPage()));
     on<GotoSignInPage>((event, emit) => emit(OnSignInPage()));
     on<GotoHomePage>((event, emit) => emit(OnHomePage()));

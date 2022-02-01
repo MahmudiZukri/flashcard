@@ -69,9 +69,10 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontWeight: FontWeight.bold,
                               foreground: Paint()..shader = textGradient)),
                       SizedBox(height: 4),
-                      Text(
-                          "Create your account to stay connected with your memorizing process",
-                          style: whiteTextFont.copyWith(color: Colors.white70)),
+                      Text("descSignUp",
+                              style:
+                                  whiteTextFont.copyWith(color: Colors.white70))
+                          .tr(),
                       Spacer(),
                       TextField(
                         controller: _nameController,
@@ -79,7 +80,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: accentColor,
-                            labelText: "Full Name",
+                            labelText: "fullName".tr(),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12.0))),
                       ),
@@ -114,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         decoration: InputDecoration(
                             filled: true,
                             fillColor: accentColor,
-                            labelText: "Confirm Password",
+                            labelText: "confirmPass".tr(),
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(12.0))),
                       ),
@@ -137,12 +138,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                               color: whiteColor),
                                           SizedBox(width: 8),
                                           Expanded(
-                                            child: Text(
-                                                'Please fill all the fields !',
+                                            child: Text('fillFields',
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
                                                   fontSize: 14,
-                                                )),
+                                                )).tr(),
                                           )
                                         ],
                                       ));
@@ -160,12 +160,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                               color: whiteColor),
                                           SizedBox(width: 8),
                                           Expanded(
-                                            child: Text(
-                                                'Mismatch password and confirmed password !',
+                                            child: Text('missmatchPass',
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
                                                   fontSize: 14,
-                                                )),
+                                                )).tr(),
                                           )
                                         ],
                                       ));
@@ -183,12 +182,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                               color: whiteColor),
                                           SizedBox(width: 8),
                                           Expanded(
-                                            child: Text(
-                                                "Password's length min 6 character !",
+                                            child: Text("passMin",
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
                                                   fontSize: 14,
-                                                )),
+                                                )).tr(),
                                           )
                                         ],
                                       ));
@@ -206,12 +204,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                               color: whiteColor),
                                           SizedBox(width: 8),
                                           Expanded(
-                                            child: Text(
-                                                'Wrong formatted email address !',
+                                            child: Text('wrongEmailFormat',
                                                 maxLines: 2,
                                                 style: whiteTextFont.copyWith(
                                                   fontSize: 14,
-                                                )),
+                                                )).tr(),
                                           )
                                         ],
                                       ));
@@ -270,20 +267,22 @@ class _SignUpPageState extends State<SignUpPage> {
                               borderRadius: BorderRadius.circular(12.0),
                               gradient: primaryGradient,
                             ),
-                            child: Text("Create Account",
-                                style: blackTextFont.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.black87))),
+                            child: Text("createAcc",
+                                    style: blackTextFont.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.black87))
+                                .tr()),
                       ),
                       SizedBox(height: 10),
                       Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text("Already Have an Account? ",
-                                style: whiteTextFont.copyWith(
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: 14,
-                                    color: Colors.white54)),
+                            Text("askToSignIn",
+                                    style: whiteTextFont.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Colors.white54))
+                                .tr(),
                             GestureDetector(
                                 onTap: () {
                                   _nameController.text = '';

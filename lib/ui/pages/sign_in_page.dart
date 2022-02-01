@@ -48,9 +48,9 @@ class _SignInPageState extends State<SignInPage> {
                         foreground: Paint()..shader = textGradient)),
                 SizedBox(height: 4),
                 Text(
-                  "Login to start memorizing verses of Al-Qur'an",
+                  "descSignIn",
                   style: whiteTextFont.copyWith(color: Colors.white70),
-                ),
+                ).tr(),
                 Spacer(),
                 TextField(
                   controller: _emailController,
@@ -86,11 +86,12 @@ class _SignInPageState extends State<SignInPage> {
                 ),
                 SizedBox(height: 10),
                 Row(children: [
-                  Text("Forgot password ? ",
-                      style: whiteTextFont.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.white54)),
+                  Text("forgotPass",
+                          style: whiteTextFont.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: Colors.white54))
+                      .tr(),
                   GestureDetector(
                       onTap: () async {
                         SignInSignUpResult result =
@@ -105,11 +106,11 @@ class _SignInPageState extends State<SignInPage> {
                                   Icon(Icons.dangerous, color: whiteColor),
                                   SizedBox(width: 8),
                                   Expanded(
-                                    child: Text("Please type your email !",
+                                    child: Text("typeEmail",
                                         maxLines: 2,
                                         style: whiteTextFont.copyWith(
                                           fontSize: 14,
-                                        )),
+                                        )).tr(),
                                   )
                                 ],
                               ));
@@ -124,12 +125,11 @@ class _SignInPageState extends State<SignInPage> {
                                   Icon(Icons.check_box, color: whiteColor),
                                   SizedBox(width: 8),
                                   Expanded(
-                                    child: Text(
-                                        'The link to change your password has been sent to your email',
+                                    child: Text('changePass',
                                         maxLines: 2,
                                         style: whiteTextFont.copyWith(
                                           fontSize: 14,
-                                        )),
+                                        )).tr(),
                                   )
                                 ],
                               ));
@@ -157,12 +157,12 @@ class _SignInPageState extends State<SignInPage> {
                         }
                       },
                       child: Text(
-                        "Get now",
+                        "getNow",
                         style: tealTextFont.copyWith(
                           decoration: TextDecoration.underline,
                           fontSize: 14,
                         ),
-                      ))
+                      ).tr())
                 ]),
                 Spacer(flex: 2),
                 GestureDetector(
@@ -192,7 +192,7 @@ class _SignInPageState extends State<SignInPage> {
                                     (_emailController.text.trim() == '' ||
                                             _passwordController.text.trim() ==
                                                 '')
-                                        ? 'Please fill all the fields !'
+                                        ? 'fillFields'.tr()
                                         : result.message!,
                                     maxLines: 2,
                                     style: whiteTextFont.copyWith(
@@ -217,21 +217,23 @@ class _SignInPageState extends State<SignInPage> {
                                 ? Colors.grey
                                 : null,
                           ),
-                          child: Text("Login",
-                              style: blackTextFont.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.black87)))
+                          child: Text("login",
+                                  style: blackTextFont.copyWith(
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black87))
+                              .tr())
                       : Align(
                           alignment: Alignment.center,
                           child: CircularProgressIndicator()),
                 ),
                 SizedBox(height: 10),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text("Start fresh now? ",
-                      style: whiteTextFont.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.white54)),
+                  Text("askToSignUp",
+                          style: whiteTextFont.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: Colors.white54))
+                      .tr(),
                   GestureDetector(
                       onTap: () {
                         _emailController.text = '';

@@ -7,11 +7,20 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(EasyLocalization(
+      supportedLocales: const [
+        Locale('id'),
+        Locale('en', 'US'),
+      ],
+      path: 'assets/translations',
+      startLocale: const Locale('id'),
+      child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +41,9 @@ class MyApp extends StatelessWidget {
               User? user = snapshot.data;
               return MaterialApp(
                   debugShowCheckedModeBanner: false,
+                  localizationsDelegates: context.localizationDelegates,
+                  supportedLocales: context.supportedLocales,
+                  locale: context.locale,
                   title: 'Flashcard',
                   theme: ThemeData(
                       brightness: Brightness.dark,

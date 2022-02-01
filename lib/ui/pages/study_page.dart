@@ -22,7 +22,7 @@ class _StudyPageState extends State<StudyPage> {
       return Scaffold(
           extendBodyBehindAppBar: true,
           appBar: PreferredSize(
-              child: CustomBar(title: 'STUDY', actions: [
+              child: CustomBar(title: 'studyTitle'.tr(), actions: [
                 IconButton(
                     icon: Icon(Icons.add_box_outlined),
                     color: Colors.white,
@@ -49,11 +49,12 @@ class _StudyPageState extends State<StudyPage> {
                             child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('User Name :',
-                                style: whiteTextFont.copyWith(fontSize: 16)),
+                            Text('userName',
+                                    style: whiteTextFont.copyWith(fontSize: 16))
+                                .tr(),
                             SizedBox(height: 10),
                             Flexible(
-                              child: Text(user?.name ?? 'No Name',
+                              child: Text(user?.name ?? 'noName'.tr(),
                                   maxLines: 2,
                                   style: whiteTextFont.copyWith(
                                       fontSize: 20,
@@ -71,14 +72,14 @@ class _StudyPageState extends State<StudyPage> {
                                       .add(GotoHomePage());
                                 },
                                 icon: Icons.home_outlined,
-                                text: 'Home'),
+                                text: 'home'.tr()),
                             CustomText(
                                 onTap: () {
                                   BlocProvider.of<PageBloc>(context)
                                       .add(GotoAddFlashcardPage());
                                 },
                                 icon: Icons.add_box_outlined,
-                                text: 'Add Card'),
+                                text: 'addCard'.tr()),
                           ],
                         )),
                       ),
@@ -88,7 +89,7 @@ class _StudyPageState extends State<StudyPage> {
                             BlocProvider.of<UserBloc>(context).add(SignOut());
                           },
                           icon: Icons.logout,
-                          text: 'Sign Out')
+                          text: 'signOut'.tr())
                     ],
                   ),
                 ),
@@ -154,11 +155,11 @@ class _StudyPageState extends State<StudyPage> {
                                             : CustomContainer(
                                                 child: Center(
                                                     child: Text(
-                                                  'You have done today, Great Job! :D',
+                                                  'doneToday',
                                                   textAlign: TextAlign.center,
                                                   style: whiteTextFont.copyWith(
                                                       fontSize: 14),
-                                                )),
+                                                ).tr()),
                                                 color: Colors.black54)
                                         : (snapshot.connectionState ==
                                                 ConnectionState.waiting)
@@ -174,11 +175,11 @@ class _StudyPageState extends State<StudyPage> {
                                             : CustomContainer(
                                                 child: Center(
                                                     child: Text(
-                                                  "You don't have a Flashcard :(",
+                                                  "emptyFlashcard",
                                                   textAlign: TextAlign.center,
                                                   style: whiteTextFont.copyWith(
                                                       fontSize: 14),
-                                                )),
+                                                ).tr()),
                                                 color: Colors.black54),
                                   ),
                                   SizedBox(
@@ -288,58 +289,60 @@ class _StudyPageState extends State<StudyPage> {
                                                 style: lightWhiteTextFont),
                                             Text(':',
                                                 style: lightWhiteTextFont),
-                                            Text('Complete blackout',
-                                                style: lightWhiteTextFont,
-                                                maxLines: 2)
+                                            Text('quality0',
+                                                    style: lightWhiteTextFont,
+                                                    maxLines: 2)
+                                                .tr()
                                           ]),
                                           TableRow(children: [
                                             Text('1',
                                                 style: lightWhiteTextFont),
                                             Text(':',
                                                 style: lightWhiteTextFont),
-                                            Text(
-                                                'Incorrect response, the correct one remembered',
-                                                style: lightWhiteTextFont,
-                                                maxLines: 2)
+                                            Text('quality1',
+                                                    style: lightWhiteTextFont,
+                                                    maxLines: 2)
+                                                .tr()
                                           ]),
                                           TableRow(children: [
                                             Text('2',
                                                 style: lightWhiteTextFont),
                                             Text(':',
                                                 style: lightWhiteTextFont),
-                                            Text(
-                                                'Incorrect response, where the correct one seemed easy to recall',
-                                                style: lightWhiteTextFont,
-                                                maxLines: 2)
+                                            Text('quality2',
+                                                    style: lightWhiteTextFont,
+                                                    maxLines: 2)
+                                                .tr()
                                           ]),
                                           TableRow(children: [
                                             Text('3',
                                                 style: lightWhiteTextFont),
                                             Text(':',
                                                 style: lightWhiteTextFont),
-                                            Text(
-                                                'Correct response, recalled with serious difficulty',
-                                                style: lightWhiteTextFont,
-                                                maxLines: 2)
+                                            Text('quality3',
+                                                    style: lightWhiteTextFont,
+                                                    maxLines: 2)
+                                                .tr()
                                           ]),
                                           TableRow(children: [
                                             Text('4',
                                                 style: lightWhiteTextFont),
                                             Text(':',
                                                 style: lightWhiteTextFont),
-                                            Text(
-                                                'Correct response, after a hesitation',
-                                                style: lightWhiteTextFont,
-                                                maxLines: 2)
+                                            Text('quality4',
+                                                    style: lightWhiteTextFont,
+                                                    maxLines: 2)
+                                                .tr()
                                           ]),
                                           TableRow(children: [
                                             Text('5',
                                                 style: lightWhiteTextFont),
                                             Text(':',
                                                 style: lightWhiteTextFont),
-                                            Text('Perfect response',
-                                                style: lightWhiteTextFont,
-                                                maxLines: 2)
+                                            Text('quality5',
+                                                    style: lightWhiteTextFont,
+                                                    maxLines: 2)
+                                                .tr()
                                           ]),
                                         ],
                                       )),

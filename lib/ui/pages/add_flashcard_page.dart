@@ -23,7 +23,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-          child: CustomBar(title: 'ADD CARD', actions: [
+          child: CustomBar(title: 'addCardTitle'.tr(), actions: [
             IconButton(
                 icon: Icon(Icons.book_outlined),
                 color: Colors.white,
@@ -54,11 +54,12 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                           child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('User Name :',
-                              style: whiteTextFont.copyWith(fontSize: 16)),
+                          Text('userName',
+                                  style: whiteTextFont.copyWith(fontSize: 16))
+                              .tr(),
                           SizedBox(height: 10),
                           Flexible(
-                            child: Text(user?.name ?? 'No Name',
+                            child: Text(user?.name ?? 'noName'.tr(),
                                 maxLines: 2,
                                 style: whiteTextFont.copyWith(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
@@ -75,14 +76,14 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                     .add(GotoHomePage());
                               },
                               icon: Icons.home_outlined,
-                              text: 'Home'),
+                              text: 'home'.tr()),
                           CustomText(
                               onTap: () {
                                 BlocProvider.of<PageBloc>(context)
                                     .add(GotoStudyPage());
                               },
                               icon: Icons.book_outlined,
-                              text: 'Study'),
+                              text: 'study'.tr()),
                         ],
                       )),
                     ),
@@ -92,7 +93,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                           BlocProvider.of<UserBloc>(context).add(SignOut());
                         },
                         icon: Icons.logout,
-                        text: 'Sign Out')
+                        text: 'signOut'.tr())
                   ],
                 ),
               ),
@@ -126,10 +127,13 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                           controller: _chapterNumberController,
                           style: whiteTextFont,
                           keyboardType: TextInputType.number,
+                          onChanged: (text) {
+                            setState(() {});
+                          },
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: accentColor,
-                              labelText: "Chapter Number",
+                              labelText: "chapterNumber".tr(),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.0))),
                         ),
@@ -143,10 +147,13 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                           controller: _verseNumberController,
                           style: whiteTextFont,
                           keyboardType: TextInputType.number,
+                          onChanged: (text) {
+                            setState(() {});
+                          },
                           decoration: InputDecoration(
                               filled: true,
                               fillColor: accentColor,
-                              labelText: "Verse Number",
+                              labelText: "verseNumber".tr(),
                               border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12.0))),
                         ),
@@ -164,33 +171,44 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                       style: ElevatedButton.styleFrom(
                         primary: primaryColor,
                       ),
-                      onPressed: () async {
-                        verse = await VerseServices.getVerse(
-                            int.parse(_chapterNumberController.text.trim()),
-                            int.parse(_verseNumberController.text.trim()));
+                      onPressed: (_chapterNumberController.text.trim() != '' &&
+                              _verseNumberController.text.trim() != '')
+                          ? () async {
+                              verse = await VerseServices.getVerse(
+                                  int.parse(
+                                      _chapterNumberController.text.trim()),
+                                  int.parse(
+                                      _verseNumberController.text.trim()));
 
-                        if (verse?.chapterNumber != 0 ||
-                            verse?.verseNumber != 0 ||
-                            verse == null) {
-                          verseExist = true;
-                        } else {
-                          verseExist = false;
-                        }
-                        if (verseExist) {
-                          _questionController.text =
-                              'What is the content of Surah ${verse!.chapterName} [ ${verse!.chapterNumber} : ${verse!.verseNumber} ]  ?';
-                          _answerController.text = verse!.verseText;
-                        } else {
-                          _questionController.text = 'Not found';
-                          _answerController.text = 'Not found';
-                        }
+                              if (verse?.chapterNumber != 0 ||
+                                  verse?.verseNumber != 0 ||
+                                  verse == null) {
+                                verseExist = true;
+                              } else {
+                                verseExist = false;
+                              }
+                              if (verseExist) {
+                                _questionController.text =
+                                    // 'What is the content of Surah ${verse!.chapterName} [ ${verse!.chapterNumber} : ${verse!.verseNumber} ]  ?';
+                                    'questionFlashcard'.tr(namedArgs: {
+                                  'chapterName': verse!.chapterName,
+                                  'chapterNumber':
+                                      verse!.chapterNumber.toString(),
+                                  'verseNumber': verse!.verseNumber.toString()
+                                });
+                                _answerController.text = verse!.verseText;
+                              } else {
+                                _questionController.text = 'notFound'.tr();
+                                _answerController.text = 'notFound'.tr();
+                              }
 
-                        setState(() {});
-                      },
+                              setState(() {});
+                            }
+                          : null,
                       child: Text(
-                        "Show Card",
+                        "showCard",
                         style: whiteTextFont.copyWith(fontSize: 16),
-                      ),
+                      ).tr(),
                     ),
                   ),
                   SizedBox(height: 28.0),
@@ -202,7 +220,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: accentColor,
-                        labelText: "Question",
+                        labelText: "question".tr(),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0))),
                   ),
@@ -219,7 +237,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: accentColor,
-                        labelText: "Answer",
+                        labelText: "answer".tr(),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0))),
                   ),
@@ -259,10 +277,10 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                         Icon(Icons.check_box,
                                             color: whiteColor),
                                         SizedBox(width: 8),
-                                        Text('Flashcard added successfully!',
+                                        Text('successAdded',
                                             style: whiteTextFont.copyWith(
                                               fontSize: 14,
-                                            ))
+                                            )).tr()
                                       ],
                                     ));
 
@@ -272,9 +290,9 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                               }
                             : null,
                         child: Text(
-                          "Add Card",
+                          "addCard",
                           style: whiteTextFont.copyWith(fontSize: 16),
-                        ),
+                        ).tr(),
                       ),
                     );
                   }),

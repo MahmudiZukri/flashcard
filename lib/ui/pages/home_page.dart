@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: PreferredSize(
-          child: CustomBar(title: 'HOME'),
+          child: CustomBar(title: 'homeTitle'.tr()),
           preferredSize: Size.fromHeight(50.0)),
       body: Stack(
         children: [
@@ -41,9 +41,9 @@ class HomePage extends StatelessWidget {
                         BlocProvider.of<PageBloc>(context).add(GotoStudyPage());
                       },
                       child: Text(
-                        "Start Study",
+                        "startStudy",
                         style: whiteTextFont.copyWith(fontSize: 16),
-                      ),
+                      ).tr(),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -62,9 +62,9 @@ class HomePage extends StatelessWidget {
                             .add(GotoAddFlashcardPage());
                       },
                       child: Text(
-                        "Add Card",
+                        "addCard",
                         style: whiteTextFont.copyWith(fontSize: 16),
-                      ),
+                      ).tr(),
                     ),
                   ),
                   SizedBox(height: 20),
@@ -83,7 +83,7 @@ class HomePage extends StatelessWidget {
                         BlocProvider.of<UserBloc>(context).add(SignOut());
                       },
                       child: Text(
-                        "Sign Out",
+                        "signOut".tr(),
                         style: whiteTextFont.copyWith(fontSize: 16),
                       ),
                     ),

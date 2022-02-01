@@ -10,8 +10,8 @@ class Wrapper extends StatelessWidget {
     // User user = Provider.of<User>(context);
     // auth.FirebaseAuth.instance.authStateChanges().listen((auth.User? user) {
     if (user == null) {
-      if (prevPageEvent is! GotoSplashPage) {
-        prevPageEvent = GotoSplashPage();
+      if (prevPageEvent is! GotoLandingPage) {
+        prevPageEvent = GotoLandingPage();
         BlocProvider.of<PageBloc>(context).add(prevPageEvent!);
       }
     } else {
@@ -27,8 +27,8 @@ class Wrapper extends StatelessWidget {
     // });
 
     return BlocBuilder<PageBloc, PageState>(builder: (_, pageState) {
-      if (pageState is OnSplashPage) {
-        return SplashPage();
+      if (pageState is OnLandingPage) {
+        return LandingPage();
       } else if (pageState is OnSignUpPage) {
         return SignUpPage();
       } else if (pageState is OnSignInPage) {

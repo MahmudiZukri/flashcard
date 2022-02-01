@@ -14,7 +14,7 @@ class CustomBar extends StatelessWidget {
       centerTitle: true,
       title: Text(title,
           style: whiteTextFont.copyWith(
-              fontSize: 30.0, fontWeight: FontWeight.bold, letterSpacing: 4.0)),
+              fontSize: 28.0, fontWeight: FontWeight.bold, letterSpacing: 4.0)),
       foregroundColor: whiteColor,
       backgroundColor: Colors.transparent,
     );

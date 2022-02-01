@@ -1,7 +1,7 @@
 part of 'pages.dart';
 
-class SplashPage extends StatelessWidget {
-  const SplashPage({Key? key}) : super(key: key);
+class LandingPage extends StatelessWidget {
+  const LandingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,34 @@ class SplashPage extends StatelessWidget {
                       letterSpacing: 1.8, wordSpacing: 5.2),
                   textAlign: TextAlign.center,
                 ),
-                Spacer(flex: 2),
+                Spacer(),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        height: 45,
+                        width: 120,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              context.setLocale('id'.toLocale());
+                            },
+                            child: Text(
+                              'INDONESIA',
+                            )),
+                      ),
+                      SizedBox(
+                        height: 45,
+                        width: 120,
+                        child: ElevatedButton(
+                            onPressed: () {
+                              context.setLocale('en_US'.toLocale());
+                            },
+                            child: Text(
+                              'ENGLISH',
+                            )),
+                      ),
+                    ]),
+                Spacer(),
                 GestureDetector(
                     onTap: () {
                       context.read<PageBloc>().add(GotoSignUpPage());
@@ -47,17 +74,19 @@ class SplashPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(12.0),
                             gradient: primaryGradient,
                             color: Colors.grey),
-                        child: Text("Get Started",
-                            style: blackTextFont.copyWith(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black87)))),
+                        child: Text('landingButton',
+                                style: blackTextFont.copyWith(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black87))
+                            .tr())),
                 SizedBox(height: 10),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Text("Already Have an Account? ",
-                      style: whiteTextFont.copyWith(
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14,
-                          color: Colors.white54)),
+                  Text('askToSignIn',
+                          style: whiteTextFont.copyWith(
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              color: Colors.white54))
+                      .tr(),
                   GestureDetector(
                       onTap: () {
                         context.read<PageBloc>().add(GotoSignInPage());
