@@ -400,6 +400,9 @@ class _StudyPageState extends State<StudyPage> {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.0), gradient: colorGradient),
         child: OutlinedButton(
+            style: OutlinedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0))),
             onPressed: notAvailable
                 ? null
                 : () {

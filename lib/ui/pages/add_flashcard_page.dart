@@ -269,6 +269,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                         filled: true,
                         fillColor: accentColor,
                         labelText: "answer".tr(),
+                        labelStyle: TextStyle(fontSize: 16),
                         border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(12.0))),
                   ),
