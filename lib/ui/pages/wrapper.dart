@@ -28,7 +28,9 @@ class Wrapper extends StatelessWidget {
 
     return BlocBuilder<PageBloc, PageState>(builder: (_, pageState) {
       if (pageState is OnLandingPage) {
-        return LandingPage();
+        return LandingPage(
+            languageIND:
+                context.deviceLocale.toString() == 'id' ? true : false);
       } else if (pageState is OnSignUpPage) {
         return SignUpPage();
       } else if (pageState is OnSignInPage) {

@@ -1,8 +1,15 @@
 part of 'pages.dart';
 
-class LandingPage extends StatelessWidget {
-  const LandingPage({Key? key}) : super(key: key);
+// ignore: must_be_immutable
+class LandingPage extends StatefulWidget {
+  LandingPage({Key? key, this.languageIND = true}) : super(key: key);
+  bool languageIND;
 
+  @override
+  State<LandingPage> createState() => _LandingPageState();
+}
+
+class _LandingPageState extends State<LandingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,32 +42,52 @@ class LandingPage extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 Spacer(),
+                // SizedBox(
+                //   width: 100.0,
+                //   child: Transform.scale(
+                //     scale: 2.0,
+                //     child: Switch(
+                //         trackColor: MaterialStateProperty.all(tealColor),
+                //         activeThumbImage: AssetImage('assets/indonesia.png'),
+                //         inactiveThumbImage:
+                //             AssetImage('assets/united-states.png'),
+                //         value: widget.languageIND,
+                //         onChanged: (value) {
+                //           setState(() {
+                //             widget.languageIND = value;
+                //             widget.languageIND
+                //                 ? context.setLocale('id'.toLocale())
+                //                 : context.setLocale('en_US'.toLocale());
+                //           });
+                //         }),
+                //   ),
+                // ),
+                Text('chooseLang',
+                        style: whiteTextFont.copyWith(
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            color: Colors.white54))
+                    .tr(),
+                SizedBox(height: 8.0),
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      SizedBox(
-                        height: 45,
-                        width: 120,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              context.setLocale('id'.toLocale());
-                            },
-                            child: Text(
-                              'INDONESIA',
-                            )),
-                      ),
-                      SizedBox(
-                        height: 45,
-                        width: 120,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              context.setLocale('en_US'.toLocale());
-                            },
-                            child: Text(
-                              'ENGLISH',
-                            )),
-                      ),
-                    ]),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                        iconSize: 44.0,
+                        onPressed: () {
+                          context.setLocale('en_US'.toLocale());
+                        },
+                        icon: Image.asset('assets/united-states.png')),
+                    SizedBox(width: 10.0),
+                    IconButton(
+                        iconSize: 44.0,
+                        onPressed: () {
+                          context.setLocale('id'.toLocale());
+                        },
+                        icon: Image.asset('assets/indonesia.png')),
+                  ],
+                ),
+
                 Spacer(),
                 GestureDetector(
                     onTap: () {
