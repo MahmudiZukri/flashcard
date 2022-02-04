@@ -42,26 +42,6 @@ class _LandingPageState extends State<LandingPage> {
                   textAlign: TextAlign.center,
                 ),
                 Spacer(),
-                // SizedBox(
-                //   width: 100.0,
-                //   child: Transform.scale(
-                //     scale: 2.0,
-                //     child: Switch(
-                //         trackColor: MaterialStateProperty.all(tealColor),
-                //         activeThumbImage: AssetImage('assets/indonesia.png'),
-                //         inactiveThumbImage:
-                //             AssetImage('assets/united-states.png'),
-                //         value: widget.languageIND,
-                //         onChanged: (value) {
-                //           setState(() {
-                //             widget.languageIND = value;
-                //             widget.languageIND
-                //                 ? context.setLocale('id'.toLocale())
-                //                 : context.setLocale('en_US'.toLocale());
-                //           });
-                //         }),
-                //   ),
-                // ),
                 Text('chooseLang',
                         style: whiteTextFont.copyWith(
                             fontWeight: FontWeight.w400,
@@ -87,7 +67,6 @@ class _LandingPageState extends State<LandingPage> {
                         icon: Image.asset('assets/indonesia.png')),
                   ],
                 ),
-
                 Spacer(),
                 GestureDetector(
                     onTap: () {

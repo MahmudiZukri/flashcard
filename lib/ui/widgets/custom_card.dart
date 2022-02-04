@@ -23,7 +23,15 @@ class _CustomCardState extends State<CustomCard> {
         color: primaryColor,
         child: Center(
           child: Text(
-            widget.cardModel.question,
+            (context.locale.toString() == 'en_US' &&
+                    widget.cardModel.question[0] == 'A')
+                ? widget.cardModel.question
+                    .replaceAll('Apa bunyi dari', 'What is the content of')
+                : (context.locale.toString() == 'id' &&
+                        widget.cardModel.question[0] == 'W')
+                    ? widget.cardModel.question
+                        .replaceAll('What is the content of', 'Apa bunyi dari')
+                    : widget.cardModel.question,
             style: whiteTextFont.copyWith(fontSize: 16),
             textAlign: TextAlign.center,
           ),

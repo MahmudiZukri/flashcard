@@ -80,6 +80,37 @@ class _StudyPageState extends State<StudyPage> {
                                 },
                                 icon: Icons.add_box_outlined,
                                 text: 'addCard'.tr()),
+                            Container(
+                                height: 2.0,
+                                width: double.infinity,
+                                color: primaryColor),
+                            SizedBox(height: 30),
+                            Text('chooseLang',
+                                    style: whiteTextFont.copyWith(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 14,
+                                        color: Colors.white54))
+                                .tr(),
+                            SizedBox(height: 8.0),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                IconButton(
+                                    iconSize: 44.0,
+                                    onPressed: () {
+                                      context.setLocale('en_US'.toLocale());
+                                    },
+                                    icon: Image.asset(
+                                        'assets/united-states.png')),
+                                SizedBox(width: 10.0),
+                                IconButton(
+                                    iconSize: 44.0,
+                                    onPressed: () {
+                                      context.setLocale('id'.toLocale());
+                                    },
+                                    icon: Image.asset('assets/indonesia.png')),
+                              ],
+                            ),
                           ],
                         )),
                       ),

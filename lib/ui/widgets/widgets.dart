@@ -1,3 +1,5 @@
+// ignore: implementation_imports
+import 'package:easy_localization/src/public_ext.dart';
 import 'package:flashcard/models/models.dart';
 import 'package:flashcard/shared/shared.dart';
 import 'package:flip_card/flip_card.dart';
