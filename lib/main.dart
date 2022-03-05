@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flashcard/bloc/bloc.dart';
-import 'package:flashcard/bloc/user_bloc.dart';
 import 'package:flashcard/services/services.dart';
 import 'package:flashcard/ui/pages/pages.dart';
 import 'package:flutter/material.dart';

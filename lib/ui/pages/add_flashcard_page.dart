@@ -246,6 +246,9 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                   TextField(
                     controller: _questionController,
                     style: whiteTextFont,
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                     maxLines: null,
                     readOnly: true,
                     decoration: InputDecoration(
@@ -261,6 +264,9 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                     style: verseExist
                         ? whiteTextFont.copyWith(fontSize: 20)
                         : whiteTextFont,
+                    onChanged: (text) {
+                      setState(() {});
+                    },
                     maxLines: null,
                     readOnly: true,
                     textDirection:

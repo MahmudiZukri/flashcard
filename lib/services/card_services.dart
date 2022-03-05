@@ -5,7 +5,7 @@ class FlashcardServices {
       FirebaseFirestore.instance.collection('flashcard');
 
   static Future<void> saveFlashcard(String userID, CardModel flashcard) async {
-    await flashcardCollection.doc(flashcard.answer).set({
+    await flashcardCollection.doc('$userID${flashcard.answer}').set({
       'userID': userID,
       // 'flashcardID': flashcard.id,
       'question': flashcard.question,
