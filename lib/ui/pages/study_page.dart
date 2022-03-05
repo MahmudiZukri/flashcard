@@ -411,7 +411,9 @@ class _StudyPageState extends State<StudyPage> {
                         cardController.toggleCard();
                       }
                       Timer(Duration(milliseconds: 250), () {
-                        selectedCard += 1;
+                        // karna stream membuat variabel cards kita jadi null
+                        // jadi gaperlu menambahkan index
+                        // selectedCard += 1;
                         if (selectedCard < cardsLength) {
                           index = selectedCard;
                         }

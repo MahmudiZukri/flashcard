@@ -233,6 +233,9 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                 _answerController.text = 'notFound'.tr();
                               }
 
+                              //close keyboard
+                              FocusScope.of(context).requestFocus(FocusNode());
+
                               setState(() {});
                             }
                           : null,
@@ -246,9 +249,6 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                   TextField(
                     controller: _questionController,
                     style: whiteTextFont,
-                    onChanged: (text) {
-                      setState(() {});
-                    },
                     maxLines: null,
                     readOnly: true,
                     decoration: InputDecoration(
@@ -264,9 +264,6 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                     style: verseExist
                         ? whiteTextFont.copyWith(fontSize: 20)
                         : whiteTextFont,
-                    onChanged: (text) {
-                      setState(() {});
-                    },
                     maxLines: null,
                     readOnly: true,
                     textDirection:
@@ -307,6 +304,8 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                         reviewedDate: DateTime.now())));
                                 _questionController.text = '';
                                 _answerController.text = '';
+                                verseExist = false;
+
                                 final snackBar = SnackBar(
                                     backgroundColor: Colors.green[400],
                                     duration: Duration(milliseconds: 1500),
@@ -325,6 +324,8 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                 ScaffoldMessenger.of(context)
                                     .showSnackBar(snackBar);
                                 addingFlashcard = false;
+
+                                setState(() {});
                               }
                             : null,
                         child: Text(
