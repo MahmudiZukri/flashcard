@@ -27,7 +27,12 @@ class _LandingPageState extends State<LandingPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(height: 100),
+                SizedBox(height: 46),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: ChooseLanguage(),
+                ),
+                SizedBox(height: 54.0),
                 Text("Al-Qur'an Flashcard",
                     textAlign: TextAlign.center,
                     style: tealTextFont.copyWith(
@@ -41,33 +46,7 @@ class _LandingPageState extends State<LandingPage> {
                       letterSpacing: 1.8, wordSpacing: 5.2),
                   textAlign: TextAlign.center,
                 ),
-                Spacer(),
-                Text('chooseLang',
-                        style: whiteTextFont.copyWith(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: Colors.white54))
-                    .tr(),
-                SizedBox(height: 8.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                        iconSize: 44.0,
-                        onPressed: () {
-                          context.setLocale('en_US'.toLocale());
-                        },
-                        icon: Image.asset('assets/united-states.png')),
-                    SizedBox(width: 10.0),
-                    IconButton(
-                        iconSize: 44.0,
-                        onPressed: () {
-                          context.setLocale('id'.toLocale());
-                        },
-                        icon: Image.asset('assets/indonesia.png')),
-                  ],
-                ),
-                Spacer(),
+                Spacer(flex: 2),
                 GestureDetector(
                     onTap: () {
                       context.read<PageBloc>().add(GotoSignUpPage());

@@ -1,5 +1,8 @@
 {
-    "chooseLang" :  "Choose your language :",
+    "isID" : "false",
+    "lang" : "EN",
+    "flag" : "assets/united-states.png",
+    "chooseLang" :  "Select a language :",
     "landingButton" : "Get Started",
     "askToSignIn" : "Already have an account ? ",
     "descSignIn" : "Login to start memorizing verses of Al-Qur'an",
@@ -12,7 +15,7 @@
     "confirmPass" : "Confirm Password",
     "createAcc" : "Create Account",
     "homeTitle" : "HOME",
-    "home" : "home",
+    "home" : "Home",
     "studyTitle" : "STUDY",
     "study" : "Study",
     "startStudy" : "Start Study",

@@ -1,4 +1,7 @@
 {
+    "isID" : "true",
+    "lang" : "ID",
+    "flag" : "assets/indonesia.png",
     "chooseLang" :  "Pilih bahasa :",
     "landingButton" : "Mulai",
     "askToSignIn" : "Sudah punya akun ? ",

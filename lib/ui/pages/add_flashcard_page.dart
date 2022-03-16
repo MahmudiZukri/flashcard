@@ -89,30 +89,19 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                               width: double.infinity,
                               color: primaryColor),
                           SizedBox(height: 30),
-                          Text('chooseLang',
-                                  style: whiteTextFont.copyWith(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 14,
-                                      color: Colors.white54))
-                              .tr(),
-                          SizedBox(height: 8.0),
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              IconButton(
-                                  iconSize: 44.0,
-                                  onPressed: () {
-                                    context.setLocale('en_US'.toLocale());
-                                  },
-                                  icon:
-                                      Image.asset('assets/united-states.png')),
-                              SizedBox(width: 10.0),
-                              IconButton(
-                                  iconSize: 44.0,
-                                  onPressed: () {
-                                    context.setLocale('id'.toLocale());
-                                  },
-                                  icon: Image.asset('assets/indonesia.png')),
+                              Text('chooseLang',
+                                      style: whiteTextFont.copyWith(
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 14,
+                                          color: Colors.white54))
+                                  .tr(),
+                              Spacer(),
+                              ChooseLanguage(
+                                heightCard: 40.0,
+                                widthCard: 80.0,
+                              )
                             ],
                           ),
                         ],
