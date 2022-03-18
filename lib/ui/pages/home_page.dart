@@ -26,7 +26,11 @@ class HomePage extends StatelessWidget {
                 children: [
                   Container(
                       height: 2.0, width: double.infinity, color: primaryColor),
-                  SizedBox(height: MediaQuery.of(context).size.height / 4),
+                  SizedBox(height: 16),
+                  Align(
+                      alignment: Alignment.centerRight,
+                      child: ChooseLanguage()),
+                  SizedBox(height: MediaQuery.of(context).size.height / 5.6),
                   Container(
                     height: 45,
                     width: 250,
@@ -88,6 +92,7 @@ class HomePage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  Spacer()
                 ],
               ),
             ),

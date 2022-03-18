@@ -3,7 +3,6 @@
 import 'dart:async';
 
 import 'package:easy_localization/src/public_ext.dart';
-import 'package:easy_localization/src/easy_localization_app.dart';
 import 'package:flashcard/bloc/bloc.dart';
 import 'package:flashcard/models/models.dart';
 import 'package:flashcard/services/services.dart';
