@@ -9,7 +9,6 @@ const Color tealBrightColor = Color(0xFF00FFCB);
 const Color accentColor = Color(0xFF1C2341);
 
 const Color backgroundColor = Color(0xFFF9F3DF);
-const Color backgroundWhite = Colors.white;
 const Color whiteColor = Colors.white;
 const Color blackColor = Colors.black;
 

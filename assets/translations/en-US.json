@@ -4,6 +4,7 @@
     "flag" : "assets/united-states.png",
     "chooseLang" :  "Select a language :",
     "landingButton" : "Get Started",
+    "signInGoogle" : "Sign In with Google",
     "askToSignIn" : "Already have an account ? ",
     "descSignIn" : "Login to start memorizing verses of Al-Qur'an",
     "getNow" : "Get Now",

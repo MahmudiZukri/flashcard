@@ -56,14 +56,62 @@ class _LandingPageState extends State<LandingPage> {
                         alignment: Alignment.center,
                         padding: EdgeInsets.all(edge * 0.75),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12.0),
-                            gradient: primaryGradient,
-                            color: Colors.grey),
+                          borderRadius: BorderRadius.circular(12.0),
+                          gradient: primaryGradient,
+                        ),
                         child: Text('landingButton',
                                 style: blackTextFont.copyWith(
                                     fontWeight: FontWeight.bold,
                                     color: Colors.black87))
                             .tr())),
+                SizedBox(height: 11.0),
+                GestureDetector(
+                    onTap: () async {
+                      SignInSignUpResult result =
+                          await AuthServices.googleLogin();
+
+                      if (result.user == null) {
+                        final snackBar = SnackBar(
+                            backgroundColor: Colors.red[400],
+                            duration: Duration(milliseconds: 1500),
+                            content: Row(
+                              children: [
+                                Icon(Icons.dangerous, color: whiteColor),
+                                SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(result.message!,
+                                      maxLines: 2,
+                                      style: whiteTextFont.copyWith(
+                                        fontSize: 14,
+                                      )),
+                                )
+                              ],
+                            ));
+
+                        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                      }
+                    },
+                    child: Container(
+                        width: double.infinity,
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.all(edge * 0.75),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12.0),
+                          color: Color(0xFFDD4B39),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            FaIcon(FontAwesomeIcons.google),
+                            SizedBox(width: 10.0),
+                            Text('signInGoogle',
+                                    style: blackTextFont.copyWith(
+                                        fontWeight: FontWeight.bold,
+                                        color: whiteColor))
+                                .tr()
+                          ],
+                        ))),
                 SizedBox(height: 10),
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                   Text('askToSignIn',

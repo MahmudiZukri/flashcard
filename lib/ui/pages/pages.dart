@@ -14,6 +14,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:websafe_svg/websafe_svg.dart';
 import 'package:firebase_auth/firebase_auth.dart' as auth;
 import 'package:email_validator/email_validator.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 part 'wrapper.dart';
 part 'loading_page.dart';
