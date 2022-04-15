@@ -82,8 +82,8 @@ class HomePage extends StatelessWidget {
                       style: ElevatedButton.styleFrom(
                         primary: primaryColor,
                       ),
-                      onPressed: () async {
-                        await AuthServices.signOut();
+                      onPressed: () {
+                        AuthServices.signOut();
                         BlocProvider.of<UserBloc>(context).add(SignOut());
                       },
                       child: Text(
