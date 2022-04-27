@@ -16,7 +16,8 @@ class CustomText extends StatelessWidget {
         onTap();
       },
       child: Container(
-          margin: EdgeInsets.only(bottom: 26),
+          color: Colors.transparent,
+          margin: EdgeInsets.only(bottom: 16),
           child: Row(
             children: [
               Icon(icon),

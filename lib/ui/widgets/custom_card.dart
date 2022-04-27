@@ -24,11 +24,11 @@ class _CustomCardState extends State<CustomCard> {
         child: Center(
           child: Text(
             (context.locale.toString() == 'en_US' &&
-                    widget.cardModel.question == 'Apa bunyi dari')
+                    widget.cardModel.question[0] == 'A')
                 ? widget.cardModel.question
                     .replaceAll('Apa bunyi dari', 'What is the content of')
                 : (context.locale.toString() == 'id' &&
-                        widget.cardModel.question == 'What is the content of')
+                        widget.cardModel.question[0] == 'W')
                     ? widget.cardModel.question
                         .replaceAll('What is the content of', 'Apa bunyi dari')
                     : widget.cardModel.question,
@@ -45,7 +45,7 @@ class _CustomCardState extends State<CustomCard> {
               physics: BouncingScrollPhysics(),
               child: Text(
                 widget.cardModel.answer,
-                style: whiteTextFont.copyWith(fontSize: 22),
+                style: whiteTextFont.copyWith(fontSize: 24),
                 textAlign: TextAlign.center,
               ),
             ),

@@ -60,12 +60,12 @@ class _StudyPageState extends State<StudyPage> {
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold)),
                             ),
-                            SizedBox(height: 30),
+                            SizedBox(height: 20),
                             Container(
                                 height: 2.0,
                                 width: double.infinity,
                                 color: primaryColor),
-                            SizedBox(height: 30),
+                            SizedBox(height: 20),
                             CustomText(
                                 onTap: () {
                                   BlocProvider.of<PageBloc>(context)
@@ -80,6 +80,7 @@ class _StudyPageState extends State<StudyPage> {
                                 },
                                 icon: Icons.add_box_outlined,
                                 text: 'addCard'.tr()),
+                            SizedBox(height: 4),
                             Container(
                                 height: 2.0,
                                 width: double.infinity,

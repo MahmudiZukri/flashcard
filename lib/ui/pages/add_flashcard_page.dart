@@ -64,12 +64,12 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                                 style: whiteTextFont.copyWith(
                                     fontSize: 20, fontWeight: FontWeight.bold)),
                           ),
-                          SizedBox(height: 30),
+                          SizedBox(height: 20),
                           Container(
                               height: 2.0,
                               width: double.infinity,
                               color: primaryColor),
-                          SizedBox(height: 30),
+                          SizedBox(height: 20),
                           CustomText(
                               onTap: () {
                                 BlocProvider.of<PageBloc>(context)
@@ -84,6 +84,7 @@ class _AddFlashcardPageState extends State<AddFlashcardPage> {
                               },
                               icon: Icons.book_outlined,
                               text: 'study'.tr()),
+                          SizedBox(height: 4),
                           Container(
                               height: 2.0,
                               width: double.infinity,
