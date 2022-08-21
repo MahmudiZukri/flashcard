@@ -106,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                                                   style: whiteTextFont.copyWith(
                                                       color: Colors.green,
                                                       fontWeight:
-                                                          FontWeight.bold)),
+                                                          FontWeight.w400)),
                                               TextSpan(
                                                   text:
                                                       'flashcardToReview'.tr())
